@@ -1,0 +1,243 @@
+{
+    "energy": {
+        "sector": "Energy",
+        "objectives": ["Climate Change Mitigation", "Pollution Prevention"],
+        "criteria": [
+            {
+                "activity": "Renewable Energy Generation",
+                "description": "≥90% of energy from solar, wind, hydro, or geothermal",
+                "classification": "Green",
+                "examples": ["Utility-scale solar farm", "Onshore wind plant"],
+                "suggestion": "Expand renewable capacity to 100% if feasible",
+                "source": "MAS Taxonomy 2023, Section 4.1 – Energy"
+            },
+            {
+                "activity": "Transition from Coal to Gas",
+                "description": "Fuel switch for emissions reduction with no long-term lock-in",
+                "classification": "Amber",
+                "examples": ["Coal to gas turbine conversion"],
+                "suggestion": "Integrate carbon capture and define exit plan",
+                "source": "MAS Taxonomy 2023, Section 4.1 – Energy"
+            },
+            {
+                "activity": "New Coal Infrastructure",
+                "description": "New or expanded coal-based energy infra",
+                "classification": "Ineligible",
+                "examples": ["New coal plant"],
+                "suggestion": "Redirect investment to clean energy alternatives",
+                "source": "MAS Taxonomy 2023, Section 4.1 – Energy"
+            }
+        ]
+    },
+    "real_estate": {
+        "sector": "Real Estate / Construction",
+        "objectives": ["Energy Efficiency", "Climate Change Adaptation"],
+        "criteria": [
+            {
+                "activity": "Green Building Certified (Platinum)",
+                "description": "New construction meeting BCA Green Mark Platinum or equivalent",
+                "classification": "Green",
+                "examples": ["Certified office tower"],
+                "suggestion": "Ensure long-term performance monitoring",
+                "source": "MAS Taxonomy 2023, Section 4.3 – Real Estate"
+            },
+            {
+                "activity": "Moderate-Efficiency Retrofit",
+                "description": "Partial building energy upgrades (25–50%)",
+                "classification": "Amber",
+                "examples": ["HVAC upgrade in existing buildings"],
+                "suggestion": "Develop full retrofit plan with timeline",
+                "source": "MAS Taxonomy 2023, Section 4.3 – Real Estate"
+            },
+            {
+                "activity": "Unregulated New Builds",
+                "description": "No consideration of energy/environmental codes",
+                "classification": "Ineligible",
+                "examples": ["Construction without green requirements"],
+                "suggestion": "Adopt national green construction guidelines",
+                "source": "MAS Taxonomy 2023, Section 4.3 – Real Estate"
+            }
+        ]
+    },
+    "transportation": {
+        "sector": "Transportation",
+        "objectives": ["Climate Change Mitigation", "Pollution Prevention"],
+        "criteria": [
+            {
+                "activity": "Electric or Hydrogen Public Transit",
+                "description": "Use of zero-emission vehicles for mass transport",
+                "classification": "Green",
+                "examples": ["Electric buses", "Hydrogen-powered trains"],
+                "suggestion": "Transition full fleet to electric or hydrogen",
+                "source": "MAS Taxonomy 2023, Section 4.2 – Transportation"
+            },
+            {
+                "activity": "Hybrid Vehicle Fleets",
+                "description": "Partial replacement of fossil fleets with hybrids",
+                "classification": "Amber",
+                "examples": ["Hybrid city buses"],
+                "suggestion": "Develop fleet electrification roadmap",
+                "source": "MAS Taxonomy 2023, Section 4.2 – Transportation"
+            },
+            {
+                "activity": "Diesel Fleet Expansion",
+                "description": "New fossil vehicle procurement",
+                "classification": "Ineligible",
+                "examples": ["New diesel trucks"],
+                "suggestion": "Explore electric or biofuel-based options",
+                "source": "MAS Taxonomy 2023, Section 4.2 – Transportation"
+            }
+        ]
+    },
+    "agriculture": {
+        "sector": "Agriculture, Forestry & Land Use",
+        "objectives": ["Biodiversity", "Resource Circularity"],
+        "criteria": [
+            {
+                "activity": "Agroforestry & Regenerative Practices",
+                "description": "Low-impact land use with ecosystem services",
+                "classification": "Green",
+                "examples": ["Multi-crop forest farms"],
+                "suggestion": "Apply soil carbon monitoring",
+                "source": "MAS Taxonomy 2023, Section 4.4 – Agriculture"
+            },
+            {
+                "activity": "Sustainable Certification Transition",
+                "description": "Moving toward RSPO or equivalent certification",
+                "classification": "Amber",
+                "examples": ["Partially certified palm oil"],
+                "suggestion": "Implement full traceability system",
+                "source": "MAS Taxonomy 2023, Section 4.4 – Agriculture"
+            },
+            {
+                "activity": "Deforestation or Slash-and-Burn",
+                "description": "Land clearing without reforestation or restoration",
+                "classification": "Ineligible",
+                "examples": ["New plantations on cleared rainforest"],
+                "suggestion": "Cease activity and start restoration project",
+                "source": "MAS Taxonomy 2023, Section 4.4 – Agriculture"
+            }
+        ]
+    },
+    "industrial": {
+        "sector": "Industrial",
+        "objectives": ["Pollution Prevention", "Climate Mitigation"],
+        "criteria": [
+            {
+                "activity": "Electrified Low-Carbon Production",
+                "description": "Manufacturing processes using electric or CCS technologies",
+                "classification": "Green",
+                "examples": ["Electric arc steel mill"],
+                "suggestion": "Reduce process-related CO₂ intensity",
+                "source": "MAS Taxonomy 2023, Section 4.5 – Industrial"
+            },
+            {
+                "activity": "Fuel Switch Process",
+                "description": "Shift from coal to lower-emission fuel with interim targets",
+                "classification": "Amber",
+                "examples": ["Coal-to-gas ceramic production"],
+                "suggestion": "Plan for renewable integration by 2035",
+                "source": "MAS Taxonomy 2023, Section 4.5 – Industrial"
+            },
+            {
+                "activity": "New High-Emission Facilities",
+                "description": "Unabated heavy industrial build-out",
+                "classification": "Ineligible",
+                "examples": ["Ammonia plants with no mitigation"],
+                "suggestion": "Avoid unless paired with CCS or offset strategy",
+                "source": "MAS Taxonomy 2023, Section 4.5 – Industrial"
+            }
+        ]
+    },
+    "ict": {
+        "sector": "Information and Communication Technology",
+        "objectives": ["Resource Circularity", "Energy Efficiency"],
+        "criteria": [
+            {
+                "activity": "Green Data Centers",
+                "description": "Data centers with PUE < 1.4, renewable energy sourcing",
+                "classification": "Green",
+                "examples": ["Green Mark Platinum facilities"],
+                "suggestion": "Ensure renewable sourcing and 24/7 load tracking",
+                "source": "MAS Taxonomy 2023, Section 4.7 – ICT"
+            },
+            {
+                "activity": "Moderate-Efficiency Infrastructure",
+                "description": "Legacy systems with some optimization",
+                "classification": "Amber",
+                "examples": ["Tier-2 hybrid-cooled server farms"],
+                "suggestion": "Upgrade cooling systems and raise monitoring frequency",
+                "source": "MAS Taxonomy 2023, Section 4.7 – ICT"
+            },
+            {
+                "activity": "Unoptimized High-Energy Servers",
+                "description": "Aged ICT hardware with no power efficiency",
+                "classification": "Ineligible",
+                "examples": ["2010s legacy blade server racks"],
+                "suggestion": "Decommission or migrate to efficient cloud infra",
+                "source": "MAS Taxonomy 2023, Section 4.7 – ICT"
+            }
+        ]
+    },
+    "waste_circular_economy": {
+        "sector": "Waste and Circular Economy",
+        "objectives": ["Circular Resource Use", "Pollution Prevention"],
+        "criteria": [
+            {
+                "activity": "Material Recovery Facilities (MRFs)",
+                "description": ">75% recovery rate for recyclable waste",
+                "classification": "Green",
+                "examples": ["Smart sorting hubs"],
+                "suggestion": "Use AI for contamination detection and routing",
+                "source": "MAS Taxonomy 2023, Section 4.6 – Waste"
+            },
+            {
+                "activity": "Basic Waste-to-Energy Plants",
+                "description": "Partial capture or emission controls",
+                "classification": "Amber",
+                "examples": ["Single-stage incinerators"],
+                "suggestion": "Upgrade with full emissions treatment stack",
+                "source": "MAS Taxonomy 2023, Section 4.6 – Waste"
+            },
+            {
+                "activity": "Uncontrolled Disposal",
+                "description": "Landfilling or waste discharge without controls",
+                "classification": "Ineligible",
+                "examples": ["Non-sanitary dumpsites"],
+                "suggestion": "Close site and initiate recovery project",
+                "source": "MAS Taxonomy 2023, Section 4.6 – Waste"
+            }
+        ]
+    },
+    "carbon_capture": {
+        "sector": "Carbon Capture & Sequestration",
+        "objectives": ["Climate Change Mitigation"],
+        "criteria": [
+            {
+                "activity": "Permanent Geological Storage",
+                "description": "Capture with verified containment and monitoring",
+                "classification": "Green",
+                "examples": ["Saline aquifer storage"],
+                "suggestion": "Maintain MRV (Monitoring, Reporting, Verification) protocols",
+                "source": "MAS Taxonomy 2023, Section 4.8 – Carbon Capture"
+            },
+            {
+                "activity": "Temporary or Pilot CCS",
+                "description": "Demonstration CCS without verified containment",
+                "classification": "Amber",
+                "examples": ["Pilot capture unit on cement plant"],
+                "suggestion": "Validate permanence and publish results",
+                "source": "MAS Taxonomy 2023, Section 4.8 – Carbon Capture"
+            },
+            {
+                "activity": "Unregulated CO₂ Release",
+                "description": "CO₂ venting without offset or containment",
+                "classification": "Ineligible",
+                "examples": ["Open-flame flaring processes"],
+                "suggestion": "Apply CCS, offsetting or capture pathways",
+                "source": "MAS Taxonomy 2023, Section 4.8 – Carbon Capture"
+            }
+        ]
+    }
+}
+
