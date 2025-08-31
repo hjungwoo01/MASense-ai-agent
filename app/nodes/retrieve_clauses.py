@@ -1,18 +1,37 @@
 from typing import Dict, Any, List
 import json
 
+from ..bedrock_client import BedrockClient
+
 def retrieve_clauses(state: Dict[str, Any]) -> Dict[str, Any]:
     """
     Retrieve relevant MAS framework clauses based on the action
     """
-    action = state["action"]
+    action = state["action"]["action"]  # Nested under state["action"]["action"]
+    bedrock_client = BedrockClient()
     
     try:
         # Load MAS ruleset
         with open("mas_ruleset.json", "r") as f:
             ruleset = json.load(f)
             
-        sector = action["sector"]
+        # If sector is not provided, use Bedrock to analyze the description
+        if "sector" not in action:
+            # Create a prompt to analyze the description and determine sector
+            prompt = f"""Given this financial action description, determine the most appropriate sector from the MAS ruleset:
+            
+            Description: {action['description']}
+            Organization Type: {action['organization']['industry']}
+            
+            Available sectors: {', '.join(ruleset.keys())}
+            
+            Return only the sector name that best matches."""
+            
+            # Get sector from Bedrock
+            sector = bedrock_client.generate_response(prompt).strip().lower()
+        else:
+            sector = action["sector"].lower()
+
         if sector not in ruleset:
             return {
                 **state,

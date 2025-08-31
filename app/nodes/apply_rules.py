@@ -1,4 +1,4 @@
-from app.bedrock_client import call_claude
+from app.bedrock_client import BedrockClient
 
 def apply_rules(state : dict) -> dict:
     """

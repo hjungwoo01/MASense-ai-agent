@@ -1,7 +1,7 @@
 from typing import Dict, Any, List, Optional
-from langchain.schema import Document
-from langchain.vectorstores import FAISS
-from langchain.embeddings import BedrockEmbeddings
+from langchain_core.documents import Document
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import BedrockEmbeddings
 import json
 from pydantic import BaseModel
 
@@ -18,9 +18,18 @@ def extract_inputs(action_data: Dict[str, Any]) -> Dict[str, Any]:
     """
     # Validate basic required fields
     required_fields = ['description', 'amount']
-    for field in required_fields:
-        if field not in action_data:
-            raise ValueError(f"Missing required field: {field}")
+    missing_fields = [field for field in required_fields if not action_data.get(field)]
+    
+    if missing_fields:
+        return {
+            "action": action_data,
+            "status": "error",
+            "errors": [f"Missing required field: {', '.join(missing_fields)}"],
+            "context": {},
+            "evaluation": {},
+            "explanation": {},
+            "artifacts": {}
+        }
     
     # Extract organization context if provided
     org_context = action_data.get('organization', {
