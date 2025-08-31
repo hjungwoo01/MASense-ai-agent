@@ -13,7 +13,8 @@ def _post_json(path: str, payload: Dict[str, Any], timeout: int = 30) -> Optiona
         r = requests.post(f"{API_BASE}{path}", json=payload, timeout=timeout)
         r.raise_for_status()
         return r.json()
-    except Exception:
+    except Exception as e:
+        print(f"[api_client] POST {path} failed: {e}")
         return None
 
 def _post_file(path: str, files, data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -22,7 +23,8 @@ def _post_file(path: str, files, data: Dict[str, Any]) -> Optional[Dict[str, Any
         r = requests.post(f"{API_BASE}{path}", files=files, data=data, timeout=60)
         r.raise_for_status()
         return r.json()
-    except Exception:
+    except Exception as e:
+        print(f"[api_client] POST file {path} failed: {e}")
         return None
 
 def start_session() -> Dict[str, Any]:
@@ -69,8 +71,8 @@ def chat_message(session_id: str, message: str, company_profile: Dict[str, Any])
         "session_id": session_id,
         "message": message,
         "company_profile": company_profile,  # optional hints (sector, activity, metrics)
-        "chat_history": [...],
-        "doc_ids": [...],
+        "chat_history": [],
+        "doc_ids": [],
         # "client_meta": {"ui_version": "streamlit-0.1.0"},
     }
     resp = _post_json("/chat", payload)
@@ -104,8 +106,8 @@ def answer_missing(session_id: str, answers: Dict[str, Any]) -> Dict[str, Any]:
     payload = {
         "session_id": session_id,
         "answers": answers,
-        "chat_history": [...],
-        "doc_ids": [...],
+        "chat_history": [],
+        "doc_ids": [],
     }
     resp = _post_json("/chat/answer", payload)
     if resp is None:

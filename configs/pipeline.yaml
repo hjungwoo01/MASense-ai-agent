@@ -1,0 +1,24 @@
+paths:
+  raw_dir: data/input
+  parsed_dir: data/output/parsed
+  chunks_dir: data/output/chunks
+  index_dir: data/output/index
+  classify_dir: data/output/classifications
+  reports_dir: data/output/reports
+
+ingest:
+  file_types: ["pdf"]
+
+chunk:
+  chunk_size: 1500
+  chunk_overlap: 200
+
+index:
+  top_k: 3
+
+classify:
+  api_base: http://localhost:8000
+  endpoint: /batch-evaluate
+
+report:
+  format: json
