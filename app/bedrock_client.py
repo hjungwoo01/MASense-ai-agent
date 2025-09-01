@@ -18,41 +18,54 @@ class BedrockClient:
         """Initialize AWS Bedrock client with credentials from environment variables"""
         self.client = boto3.client(
             'bedrock-runtime',
-            region_name=os.getenv("AWS_DEFAULT_REGION", "ap-southeast-1"),
+            region_name=os.getenv("AWS_DEFAULT_REGION"),
             aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
         )
 
-    def generate_response(self, user_prompt: str) -> Dict[str, Any]:
-        """Generate a response using Claude 3 Sonnet model via Bedrock"""
-
-        # Claude models require a structured prompt
-        formatted_prompt = f"\n\nHuman: {user_prompt}\n\nAssistant:"
-
-        request_body = {
-            "prompt": formatted_prompt,
-            "max_tokens_to_sample": 1600,
-            "temperature": 0.7,
-            "top_p": 0.999,
-            "stop_sequences": ["\n\nHuman:"]
-        }
-
+    def generate_response(self, prompt: str) -> Dict[str, Any]:
+        """Generate a response using Claude 3 with Bedrock Messages API"""
         try:
-            response = self.client.invoke_model(
-                modelId="anthropic.claude-3-sonnet-20240229-v1",
-                body=json.dumps(request_body),
-                contentType="application/json",
-                accept="application/json"
-            )
+            model_id = os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-3-sonnet-20240229-v1:0:28k")
+            use_streaming = os.getenv("USE_STREAMING", "false").lower() == "true"
 
-            # Read and parse the response
-            body = response["body"].read().decode("utf-8")
-            logger.debug(f"Raw Bedrock response: {body}")
-            parsed = json.loads(body)
+            request_body = {
+                "anthropic_version": "bedrock-2023-05-31",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                "max_tokens": 1600,
+                "temperature": 0.7
+            }
+
+            if use_streaming:
+                response = self.client.invoke_model_with_response_stream(
+                    modelId=model_id,
+                    body=json.dumps(request_body),
+                    contentType="application/json",
+                    accept="application/json"
+                )
+
+                # Decode the streaming response
+                response_body = b"".join([chunk["chunk"]["bytes"] for chunk in response["body"]])
+                decoded = json.loads(response_body)
+
+            else:
+                response = self.client.invoke_model(
+                    modelId=model_id,
+                    body=json.dumps(request_body),
+                    contentType="application/json",
+                    accept="application/json"
+                )
+
+                decoded = json.loads(response["body"].read())
 
             return {
-                "status": "success",
-                "content": parsed.get("completion", "").strip()
+                "content": decoded["content"][0]["text"],
+                "status": "success"
             }
 
         except Exception as e:
@@ -61,6 +74,7 @@ class BedrockClient:
                 "status": "error",
                 "error": str(e)
             }
+
 
     def analyze_financial_action(self, action: Dict[str, Any]) -> Dict[str, Any]:
         """Builds prompt to analyze financial action using MAS taxonomy"""

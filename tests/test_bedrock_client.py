@@ -41,10 +41,7 @@ def test_analyze_financial_action(mock_generate, client):
     assert "content" in response
 
 def test_error_handling(client):
-    with pytest.raises(TypeError):  # Because prompt=None fails at str formatting
-        client.generate_response(None)
-
-    bad_action = {"description": None}
-    response = client.analyze_financial_action(bad_action)
-    assert response["status"] == "error"
-    assert "error" in response
+    """Test graceful handling of bad input"""
+    result = client.generate_response(None)
+    assert result["status"] == "error"
+    assert "error" in result

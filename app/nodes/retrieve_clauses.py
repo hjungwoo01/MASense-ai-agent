@@ -28,7 +28,16 @@ def retrieve_clauses(state: Dict[str, Any]) -> Dict[str, Any]:
             Return only the sector name that best matches."""
             
             # Get sector from Bedrock
-            sector = bedrock_client.generate_response(prompt).strip().lower()
+            response = bedrock_client.generate_response(prompt)
+
+            if response["status"] != "success":
+                return {
+                    **state,
+                    "status": "error",
+                    "errors": [f"Bedrock failed to classify sector: {response.get('error', 'Unknown error')}"]
+                }
+
+            sector = response["content"].strip().lower()
         else:
             sector = action["sector"].lower()
 
