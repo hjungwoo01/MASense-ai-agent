@@ -48,63 +48,59 @@ def create_evaluation_graph() -> StateGraph:
     # Add conditional branching
     workflow.add_conditional_edges(
         "ask_user",
-        should_continue,
-        {
+        condition=should_continue,
+        edges={
             True: "emit_artifacts",
-            False: END  # End if we need clarification
+            False: END
         }
     )
-    
-    workflow.add_edge("emit_artifacts", END)
 
-    # Set the entry point
+    # Set entry point
     workflow.set_entry_point("extract_inputs")
 
-    return workflow
+    # Compile the graph
+    chain = workflow.compile()
+    return chain
 
-def evaluate_financial_action(action_data: Dict[str, Any]) -> Dict[str, Any]:
+def evaluate_financial_action(action: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Run the evaluation workflow for a financial action
+    Evaluate a financial action using the workflow graph
     """
     try:
-        # Create the workflow
-        workflow = create_evaluation_graph()
-        
-        # Compile the graph
-        app = workflow.compile()
-        
-        # Initialize state
-        initial_state: State = {
-            "action": action_data,
-            "status": "started",
-            "errors": [],
-            "context": {},
-            "evaluation": {},
-            "explanation": {},
-            "artifacts": {}
+        # Create initial state with the action
+        initial_state = State(
+            action=action,
+            status="started",
+            errors=[],
+            context={
+                "action": action,  # Make action available in context
+                "organization": action.get("organization", {})  # Extract org data
+            },
+            evaluation={},
+            explanation={},
+            artifacts={}
+        )
+
+        # Create and run the graph
+        graph = create_evaluation_graph()
+        final_state = graph.invoke(initial_state)
+
+        # Process the final state
+        result = {
+            "status": "success" if not final_state["errors"] else "error",
+            "evaluation": final_state.get("evaluation", {}),
+            "explanation": final_state.get("explanation", {}),
+            "artifacts": final_state.get("artifacts", {}),
+            "context": final_state.get("context", {})
         }
         
-        # Execute the workflow
-        final_state = None
-        for state in app.stream(initial_state):
-            print(f"Current step: {state.get('status', 'unknown')}")
-            if state.get("errors"):
-                print(f"Errors encountered: {state['errors']}")
-            final_state = state
+        if final_state.get("errors"):
+            result["errors"] = final_state["errors"]
             
-            # If we encounter an error, break early
-            if state.get("status") == "error":
-                break
-                
-        return final_state  # Return the final state
-        
+        return result
+
     except Exception as e:
         return {
             "status": "error",
-            "errors": [f"Workflow execution failed: {str(e)}"],
-            "action": action_data,
-            "context": {},
-            "evaluation": {},
-            "explanation": {},
-            "artifacts": {}
+            "errors": [f"Workflow error: {str(e)}"]
         }

@@ -1,8 +1,8 @@
 import boto3
-import json
-import os
 import logging
+import json
 from typing import Dict, Any, Optional
+import os
 from dotenv import load_dotenv
 
 # Load .env file (for local development)
@@ -15,56 +15,36 @@ logger = logging.getLogger(__name__)
 
 class BedrockClient:
     def __init__(self):
-        """Initialize AWS Bedrock client with credentials from environment variables"""
+        """Initialize Bedrock client using boto3"""
         self.client = boto3.client(
-            'bedrock-runtime',
-            region_name=os.getenv("AWS_DEFAULT_REGION"),
-            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
+            service_name='bedrock-runtime',
+            region_name=os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
         )
+        self.model_id = "anthropic.claude-3-sonnet-20240229-v1:0"
 
     def generate_response(self, prompt: str) -> Dict[str, Any]:
-        """Generate a response using Claude 3 with Bedrock Messages API"""
+        """Generate a response using Claude 3 via AWS Bedrock"""
         try:
-            model_id = os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-3-sonnet-20240229-v1:0:28k")
-            use_streaming = os.getenv("USE_STREAMING", "false").lower() == "true"
-
             request_body = {
                 "anthropic_version": "bedrock-2023-05-31",
+                "max_tokens": 1600,
                 "messages": [
                     {
                         "role": "user",
                         "content": prompt
                     }
                 ],
-                "max_tokens": 1600,
                 "temperature": 0.7
             }
 
-            if use_streaming:
-                response = self.client.invoke_model_with_response_stream(
-                    modelId=model_id,
-                    body=json.dumps(request_body),
-                    contentType="application/json",
-                    accept="application/json"
-                )
+            response = self.client.invoke_model(
+                modelId=self.model_id,
+                body=json.dumps(request_body)
+            )
 
-                # Decode the streaming response
-                response_body = b"".join([chunk["chunk"]["bytes"] for chunk in response["body"]])
-                decoded = json.loads(response_body)
-
-            else:
-                response = self.client.invoke_model(
-                    modelId=model_id,
-                    body=json.dumps(request_body),
-                    contentType="application/json",
-                    accept="application/json"
-                )
-
-                decoded = json.loads(response["body"].read())
-
+            response_body = json.loads(response['body'].read().decode())
             return {
-                "content": decoded["content"][0]["text"],
+                "content": response_body['content'][0]['text'],
                 "status": "success"
             }
 
