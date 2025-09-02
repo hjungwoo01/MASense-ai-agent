@@ -1,61 +1,67 @@
 from app.bedrock_client import BedrockClient
+import logging
 
-def apply_rules(state : dict) -> dict:
+logger = logging.getLogger(__name__)
+
+def apply_rules(state: dict) -> dict:
     """
     Apply MAS rules to the extracted user input using Bedrock (Claude).
     """
-    user_action = state.get("query", "")
-    retrieved_clauses = state.get("retrieved_clauses", [])
-    extracted_inputs = state.get("extracted_inputs", {})
-
-    # Construct prompt for classification
-    rules_text = "\n\n".join([
-        f"Activity: {c['activity']}\nClassification: {c['classification']}\nDescription: {c['description']}"
-        for c in retrieved_clauses
-    ])
-    prompt = f"""
-    You are an ESG compliance AI agent. Your job is to classify the user's financial activity
-    according to the MAS Singapore-Asia taxonomy.
-
-    User activity:
-    "{user_action}"
-
-    Extracted metadata:
-    Sector: {extracted_inputs.get('sector')}
-    Activity: {extracted_inputs.get('activity')}
-    Attributes: {extracted_inputs.get('attributes')}
-
-    MAS Classification Rules (retrieved from vector DB):
-    {rules_text}
-
-    Instructions:
-    1. Assign a classification: Green, Amber, or Ineligible.
-    2. Justify the label using MAS clauses above.
-    3. If ambiguous, request clarification from user.
-
-    Respond in this JSON format:
-    {{
-    "label": "...",
-    "explanation": "...",
-    "needs_clarification": true/false
-    }}
-    """
-
     try:
-        result = bedrock_client.call_claude(prompt)
-        output = result.get("completion", result) # handling raw JSON vs structured response
-
-    except Exception as e:
-        output = {
-            "label": "Error",
-            "explanation": f"Failure in calling Bedrock Client: {str(e)}",
-            "needs_clarification": True
+        client = BedrockClient()
+        
+        # Get context from state
+        context = state.get("context", {})
+        action = context.get("action", {})
+        org = context.get("organization", {})
+        
+        if not action or not org:
+            logger.error("Missing action or organization context")
+            return {
+                **state,
+                "status": "error",
+                "errors": ["Missing action or organization context"]
+            }
+        
+        # Prepare action data for analysis
+        analysis_request = {
+            "description": action.get("description", ""),
+            "amount": action.get("amount", 0),
+            "currency": action.get("currency", "SGD"),
+            "organization": org
         }
-    
-    state.update({
-        "label": output['label'],
-        "explanation": output['explanation'],
-        "needs_clarification": output['needs_clarification']
-    })
-
-    return state
+        
+        logger.info(f"Analyzing financial action: {analysis_request}")
+        result = client.analyze_financial_action(analysis_request)
+        
+        if result.get("status") == "error":
+            error_msg = result.get("error", "Unknown error in rule analysis")
+            logger.error(f"Analysis failed: {error_msg}")
+            return {
+                **state,
+                "status": "error",
+                "errors": [error_msg]
+            }
+            
+        # Extract evaluation results
+        evaluation = {
+            "classification": result.get("content", {}).get("classification", ""),
+            "explanation": result.get("content", {}).get("explanation", ""),
+            "required_documentation": result.get("content", {}).get("required_documentation", [])
+        }
+        
+        logger.info(f"Analysis completed with classification: {evaluation['classification']}")
+        return {
+            **state,
+            "status": "success",
+            "evaluation": evaluation
+        }
+        
+    except Exception as e:
+        error_msg = f"Error in rule analysis: {str(e)}"
+        logger.error(error_msg)
+        return {
+            **state,
+            "status": "error",
+            "errors": [error_msg]
+        }

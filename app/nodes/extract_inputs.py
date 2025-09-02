@@ -12,12 +12,52 @@ class OrganizationContext(BaseModel):
     country: str = "Singapore"
     existing_sustainability_programs: Optional[List[str]] = None
 
-def extract_inputs(action_data: Dict[str, Any]) -> Dict[str, Any]:
+def extract_inputs(state: Dict[str, Any]) -> Dict[str, Any]:
     """
     Extract and validate input data for processing, with enhanced organization context
     """
-    # Validate basic required fields
-    required_fields = ['description', 'amount']
+    try:
+        action_data = state["action"]
+        
+        # Validate basic required fields
+        required_fields = ['description', 'amount']
+        
+        # Check required fields
+        missing_fields = [field for field in required_fields if field not in action_data]
+        if missing_fields:
+            return {
+                **state,
+                "status": "error",
+                "errors": [f"Missing required fields: {', '.join(missing_fields)}"]
+            }
+            
+        # Validate organization data
+        org_data = action_data.get('organization', {})
+        try:
+            org_context = OrganizationContext(**org_data)
+        except Exception as e:
+            return {
+                **state,
+                "status": "error",
+                "errors": [f"Invalid organization data: {str(e)}"]
+            }
+            
+        # Update context with validated data
+        return {
+            **state,
+            "status": "success",
+            "context": {
+                "action": action_data,
+                "organization": org_context.dict()
+            }
+        }
+        
+    except Exception as e:
+        return {
+            **state,
+            "status": "error",
+            "errors": [f"Error extracting inputs: {str(e)}"]
+        }
     missing_fields = [field for field in required_fields if not action_data.get(field)]
     
     if missing_fields:

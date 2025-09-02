@@ -1,45 +1,31 @@
-from typing import Dict, Any, List
-from ..bedrock_client import BedrockClient
+from typing import Dict, Any
+import logging
+
+logger = logging.getLogger(__name__)
 
 def ask_user(state: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Generate clarifying questions if needed
+    For now, just pass through the state without asking the user.
+    In a real implementation, this would interact with the UI to get user input.
     """
     if state.get("status") == "error":
         return state
         
-    # Check if confidence score is too low
-    if state["evaluation"]["confidence_score"] < 0.7:
-        bedrock = BedrockClient()
-        
-        prompt = f"""
-        Based on this financial action evaluation:
-        
-        Sector: {state['action']['sector']}
-        Activity: {state['action']['activity']}
-        Description: {state['action']['description']}
-        Current Classification: {state['evaluation']['classification']}
-        Confidence Score: {state['evaluation']['confidence_score']}
-        
-        Generate 2-3 specific questions that would help clarify:
-        1. The nature of the activity
-        2. Its alignment with MAS frameworks
-        3. Implementation details
-        
-        Format as a JSON list of questions.
-        """
-        
-        questions_response = bedrock.generate_response(prompt)
-        try:
-            questions = json.loads(questions_response)
-        except json.JSONDecodeError:
-            questions = ["Could you provide more details about this activity?"]
-            
+    evaluation = state.get("evaluation", {})
+    if not evaluation:
         return {
             **state,
-            "status": "needs_clarification",
-            "clarifying_questions": questions
+            "status": "error",
+            "errors": ["No evaluation to process"]
         }
+        
+    # TODO: Add user interaction through UI
+    # For now, we'll just continue without user interaction
+    logger.info("Proceeding without user interaction")
+    return {
+        **state,
+        "status": "success"
+    }
     
     return {
         **state,

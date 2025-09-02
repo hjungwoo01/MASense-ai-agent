@@ -1,45 +1,77 @@
-from typing import Dict, Any, List
+from typing import Dict, Any
 import json
+import os
+import logging
 
-from ..bedrock_client import BedrockClient
+logger = logging.getLogger(__name__)
 
 def retrieve_clauses(state: Dict[str, Any]) -> Dict[str, Any]:
     """
     Retrieve relevant MAS framework clauses based on the action
     """
-    action = state["action"]["action"]  # Nested under state["action"]["action"]
-    bedrock_client = BedrockClient()
-    
     try:
+        context = state.get("context", {})
+        action = context.get("action", {})
+        org = context.get("organization", {})
+        
+        if not action or not org:
+            return {
+                **state,
+                "status": "error",
+                "errors": ["Missing action or organization context"]
+            }
+            
         # Load MAS ruleset
-        with open("mas_ruleset.json", "r") as f:
-            ruleset = json.load(f)
-            
-        # If sector is not provided, use Bedrock to analyze the description
-        if "sector" not in action:
-            # Create a prompt to analyze the description and determine sector
-            prompt = f"""Given this financial action description, determine the most appropriate sector from the MAS ruleset:
-            
-            Description: {action['description']}
-            Organization Type: {action['organization']['industry']}
-            
-            Available sectors: {', '.join(ruleset.keys())}
-            
-            Return only the sector name that best matches."""
-            
-            # Get sector from Bedrock
-            response = bedrock_client.generate_response(prompt)
-
-            if response["status"] != "success":
-                return {
-                    **state,
-                    "status": "error",
-                    "errors": [f"Bedrock failed to classify sector: {response.get('error', 'Unknown error')}"]
+        ruleset_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "mas_ruleset.json")
+        try:
+            with open(ruleset_path, "r") as f:
+                ruleset = json.load(f)
+        except FileNotFoundError:
+            logger.warning("MAS ruleset not found, using default classification logic")
+            ruleset = {
+                "sectors": {
+                    "Energy": {
+                        "green": ["solar", "wind", "renewable"],
+                        "amber": ["efficiency", "upgrade"]
+                    },
+                    "Real Estate": {
+                        "green": ["energy efficiency", "renewable energy"],
+                        "amber": ["renovation", "upgrade"]
+                    }
                 }
+            }
 
-            sector = response["content"].strip().lower()
-        else:
-            sector = action["sector"].lower()
+        # Extract relevant clauses based on industry
+        industry = org.get("industry", "")
+        sector_rules = ruleset.get("sectors", {}).get(industry, {})
+        
+        if not sector_rules:
+            return {
+                **state,
+                "status": "error",
+                "errors": [f"No rules found for industry: {industry}"]
+            }
+        
+        return {
+            **state,
+            "status": "success",
+            "context": {
+                **context,
+                "rules": {
+                    "sector": industry,
+                    "clauses": sector_rules
+                }
+            }
+        }
+            
+    except Exception as e:
+        error_msg = f"Error retrieving clauses: {str(e)}"
+        logger.error(error_msg)
+        return {
+            **state,
+            "status": "error",
+            "errors": [error_msg]
+        }
 
         if sector not in ruleset:
             return {
