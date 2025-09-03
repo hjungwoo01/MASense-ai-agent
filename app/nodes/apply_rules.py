@@ -1,81 +1,84 @@
+from typing import Dict, Any
 from app.bedrock_client import BedrockClient
 import logging
 import json
 
 logger = logging.getLogger(__name__)
 
-def apply_rules(state: dict) -> dict:
-    """
-    Apply MAS rules to the extracted user input using Bedrock (Claude).
-    """
+def apply_rules(state: Dict[str, Any]) -> Dict[str, Any]:
+    """Apply MAS rules to evaluate the financial action"""
     try:
-        client = BedrockClient()
-
         # Get context from state
         context = state.get("context", {})
         action = context.get("action", {})
-        org = context.get("organization", {})
-
-        if not action or not org:
-            logger.error("Missing action or organization context")
+        clauses = context.get("clauses", [])
+        
+        if not action or not clauses:
             return {
                 **state,
                 "status": "error",
-                "errors": ["Missing action or organization context"]
+                "errors": ["Missing required action or clauses"]
             }
 
-        # Prepare action data for analysis
-        analysis_request = {
-            "description": action.get("description", ""),
-            "amount": action.get("amount", 0),
-            "currency": action.get("currency", "SGD"),
-            "organization": org
-        }
+        # Use Bedrock to analyze against clauses
+        client = BedrockClient()
+        analysis_prompt = f"""
+        Analyze this financial action against the MAS sustainability framework clauses:
 
-        logger.info(f"Analyzing financial action: {analysis_request}")
-        result = client.analyze_financial_action(analysis_request)
+        Action: {action.get('description')}
+        Amount: {action.get('amount')} {action.get('currency')}
+        
+        Relevant Framework Clauses:
+        {json.dumps(clauses, indent=2)}
 
-        if result.get("status") == "error":
-            error_msg = result.get("error", "Unknown error in rule analysis")
-            logger.error(f"Analysis failed: {error_msg}")
+        You must return a valid JSON object with exactly these fields:
+        {{
+            "classification": "Green" or "Amber" or "Ineligible",
+            "explanation": "Detailed reasoning based on the clauses",
+            "required_documentation": ["doc1", "doc2", ...]
+        }}
+        Only return the JSON, no other text."""
+
+        response = client.generate_response(analysis_prompt)
+        if response.get("status") == "error":
             return {
                 **state,
                 "status": "error",
-                "errors": [error_msg]
+                "errors": [f"Analysis failed: {response.get('error')}"]
             }
 
-        # Use the content directly if already a dict, else try to parse
-        content = result.get("content", {})
-        if isinstance(content, str):
-            try:
-                content = json.loads(content)
-            except json.JSONDecodeError:
-                logger.warning("LLM response is not valid JSON.")
-                return {
-                    **state,
-                    "status": "error",
-                    "errors": ["LLM returned invalid JSON format"]
-                }
+        # Parse the AI response content as JSON
+        try:
+            content = json.loads(response.get("content", "{}"))
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse AI response as JSON: {response.get('content')}")
+            return {
+                **state,
+                "status": "error", 
+                "errors": ["Invalid response format from AI"]
+            }
 
-        # Extract evaluation results
+        # Update evaluation with parsed content
         evaluation = {
             "classification": content.get("classification", ""),
             "explanation": content.get("explanation", ""),
             "required_documentation": content.get("required_documentation", [])
         }
 
-        logger.info(f"Analysis completed with classification: {evaluation['classification']}")
         return {
             **state,
             "status": "success",
-            "evaluation": evaluation
+            "evaluation": evaluation,
+            "context": {
+                **context,
+                "evaluation_details": content
+            }
         }
 
     except Exception as e:
-        error_msg = f"Error in rule analysis: {str(e)}"
-        logger.error(error_msg)
+        logger.error(f"Error in apply_rules: {str(e)}")
         return {
             **state,
             "status": "error",
-            "errors": [error_msg]
+            "errors": [f"Rule application failed: {str(e)}"]
         }

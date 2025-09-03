@@ -14,14 +14,8 @@ def retrieve_clauses(state: Dict[str, Any]) -> Dict[str, Any]:
         org = context.get("organization", {})
         action = context.get("action", {})
 
-        industry = org.get("industry", "").lower()
-
-        if not industry:
-            return {
-                **state,
-                "status": "error",
-                "errors": ["Industry is missing from organization context"]
-            }
+        industry_raw = org.get("industry", "")
+        industry_key = industry_raw.lower().replace(" ", "_")
 
         # Load MAS ruleset (JSON file)
         ruleset_path = os.path.join(
@@ -32,19 +26,18 @@ def retrieve_clauses(state: Dict[str, Any]) -> Dict[str, Any]:
         with open(ruleset_path, "r") as f:
             rules = json.load(f)
 
-        if industry not in rules:
+        if industry_key not in rules:
             return {
                 **state,
                 "status": "error",
-                "errors": [f"No rules found for industry: {industry}"]
+                "errors": [f"No rules found for industry: {industry_key}"]
             }
 
-        # ✅ Extract sector metadata
-        sector_info = rules[industry]
+        sector_info = rules[industry_key] 
         criteria = sector_info.get("criteria", [])
         objectives = sector_info.get("objectives", [])
 
-        logger.debug(f"[retrieve_clauses] Found {len(criteria)} criteria for industry: {industry}")
+        logger.debug(f"[retrieve_clauses] Found {len(criteria)} criteria for industry: {industry_key}")
 
         return {
             **state,
