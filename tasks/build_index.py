@@ -1,4 +1,3 @@
-# tasks/build_index.py
 import os, yaml, json
 from pathlib import Path
 
@@ -20,10 +19,9 @@ def run(pipeline_cfg: str):
     _ensure_dir(index_dir)
     cache_path = os.path.join(index_dir, "chunks_cache.jsonl")
 
-    # For now just copy chunks into index cache
     with open(chunks_path, "r", encoding="utf-8") as src, open(cache_path, "w", encoding="utf-8") as dst:
         for line in src:
-            json.loads(line)  # sanity
+            json.loads(line)
             dst.write(line)
 
     print(f"[build_index] index cache -> {cache_path}")
