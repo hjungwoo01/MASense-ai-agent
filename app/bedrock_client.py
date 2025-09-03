@@ -56,20 +56,46 @@ class BedrockClient:
             }
 
 
-    def analyze_financial_action(self, action: Dict[str, Any]) -> Dict[str, Any]:
-        """Builds prompt to analyze financial action using MAS taxonomy"""
+    def analyze_financial_action(self, action: dict) -> dict:
+        """
+        Use Bedrock Claude model to analyze a financial action and return classification.
+        """
+        try:
+            prompt = f"""
+    You are an ESG compliance analyst evaluating financial actions based on MAS Taxonomy.
 
-        prompt = f"""Analyze this financial action according to MAS sustainability frameworks:
+    Here is a financial action submitted by an organization:
 
-Action: {action.get('description', 'N/A')}
-Amount: {action.get('amount', 'N/A')} {action.get('currency', 'SGD')}
-Organization Type: {action.get('organization', {}).get('org_type', 'N/A')}
-Industry: {action.get('organization', {}).get('industry', 'N/A')}
+    Description: {action['description']}
+    Amount: {action['amount']} {action['currency']}
+    Organization Type: {action['organization'].get('org_type')}
+    Industry: {action['organization'].get('industry')}
+    Country: {action['organization'].get('country')}
 
-Provide:
-1. Classification (Green / Amber / Ineligible)
-2. Explanation with taxonomy citations
-3. Required documentation or disclosures
-4. Suggestions for improvement if any."""
+    Evaluate whether this action aligns with MAS ESG classification guidelines.
 
-        return self.generate_response(prompt)
+    Return your analysis in the following JSON format:
+
+    {{
+    "classification": "Green / Amber / Ineligible / Uncertain",
+    "explanation": "Rationale for classification",
+    "required_documentation": ["List", "Of", "Supporting", "Documents"]
+    }}
+
+    Only return valid JSON. Do not include any commentary or explanation outside the JSON.
+    """
+
+            response = self.generate_response(prompt)
+            return {
+                "status": "success",
+                "content": response  # Will be parsed as JSON later
+            }
+
+        except Exception as e:
+            logger.error(f"[Bedrock Error] Failed to analyze financial action: {e}")
+            return {
+                "status": "error",
+                "error": str(e)
+            }
+
+

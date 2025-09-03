@@ -48,8 +48,8 @@ def create_evaluation_graph() -> StateGraph:
     # Add conditional branching
     workflow.add_conditional_edges(
         "ask_user",
-        condition=should_continue,
-        edges={
+        lambda state: should_continue(state),
+        {
             True: "emit_artifacts",
             False: END
         }
@@ -67,39 +67,44 @@ def evaluate_financial_action(action: Dict[str, Any]) -> Dict[str, Any]:
     Evaluate a financial action using the workflow graph
     """
     try:
-        # Create initial state with the action
+        print("[DEBUG] Starting evaluate_financial_action")  # ✅ You MUST see this line
+
+        # Create initial state
         initial_state = State(
             action=action,
             status="started",
             errors=[],
             context={
-                "action": action,  # Make action available in context
-                "organization": action.get("organization", {})  # Extract org data
+                "action": action,
+                "organization": action.get("organization", {})
             },
             evaluation={},
             explanation={},
             artifacts={}
         )
 
-        # Create and run the graph
         graph = create_evaluation_graph()
-        final_state = graph.invoke(initial_state)
 
-        # Process the final state
-        result = {
-            "status": "success" if not final_state["errors"] else "error",
+        # ✅ Use stream, not invoke
+        final_state = None
+        for state in graph.stream(initial_state):
+            print(f"\n🔄 Step: {state.get('status')}")
+            print("🧠 Current State:", json.dumps(state, indent=2))
+            if state.get("errors"):
+                print("❌ Errors:", state["errors"])
+            final_state = state
+
+        return {
+            "status": "success" if not final_state.get("errors") else "error",
             "evaluation": final_state.get("evaluation", {}),
             "explanation": final_state.get("explanation", {}),
             "artifacts": final_state.get("artifacts", {}),
-            "context": final_state.get("context", {})
+            "context": final_state.get("context", {}),
+            "errors": final_state.get("errors", [])
         }
-        
-        if final_state.get("errors"):
-            result["errors"] = final_state["errors"]
-            
-        return result
 
     except Exception as e:
+        print(f"[EXCEPTION] {str(e)}")  # ✅ See any runtime issues
         return {
             "status": "error",
             "errors": [f"Workflow error: {str(e)}"]
