@@ -11,3 +11,7 @@ streamlit==1.37.1
 requests==2.32.3
 python-dotenv==1.0.1
 fastapi
+langgraph
+langchain_community
+boto3
+pytest
