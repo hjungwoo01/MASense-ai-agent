@@ -10,6 +10,14 @@ from dotenv import load_dotenv
 
 from collections import deque
 import uuid
+import logging
+from .bedrock_client import BedrockClient
+from .graph import evaluate_financial_action
+from langchain_community.vectorstores import FAISS
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -78,29 +86,32 @@ async def get_sector_details(sector_name: str):
 
 @app.post("/evaluate")
 async def evaluate_action(action: FinancialAction):
-    """Evaluate a financial action against MAS sustainability criteria"""
+    """Evaluate a financial action using our workflow"""
     try:
-        # 1. Load relevant sector criteria
-        ruleset = load_mas_ruleset()
-        if action.sector.lower() not in [s.lower() for s in ruleset.keys()]:
-            raise HTTPException(status_code=400, detail="Invalid sector")
-
-        # 2. Here you would typically:
-        # - Use RAG to find relevant criteria
-        # - Apply your agent's evaluation logic
-        # - Generate explanation and suggestions
+        # Convert Pydantic model to dict for workflow
+        action_dict = action.model_dump()
         
-        # Placeholder response - replace with actual agent logic
-        return EvaluationResponse(
-            action_id="test_id",
-            classification="Amber",  # Replace with actual classification logic
-            matched_criteria=[],  # Add actual matched criteria
-            suggestions=["Implement proper monitoring systems", "Consider green alternatives"],
-            confidence_score=0.85,
-            explanation="This is a placeholder explanation"
-        )
+        # Run through our evaluation workflow
+        result = evaluate_financial_action(action_dict)
+        
+        if result.get("status") == "error":
+            raise HTTPException(
+                status_code=500,
+                detail=result.get("errors", ["Unknown error occurred"])
+            )
+            
+        # Extract evaluation results
+        evaluation = result.get("evaluation", {})
+        return {
+            "status": "success",
+            "classification": evaluation.get("classification"),
+            "explanation": evaluation.get("explanation"),
+            "required_documentation": evaluation.get("required_documentation", []),
+            "confidence": 0.95  # TODO: Implement confidence scoring
+        }
 
     except Exception as e:
+        logger.error(f"Evaluation failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/batch-evaluate")
@@ -112,11 +123,72 @@ async def batch_evaluate(actions: List[FinancialAction]):
         results.append(result)
     return results
 
+@app.post("/evaluate-with-context")
+async def evaluate_with_context(
+    action: FinancialAction,
+    context_query: Optional[str] = None
+):
+    """Evaluate action with additional context from RAG"""
+    try:
+        # If context query provided, search RAG
+        if context_query:
+            try:
+                # Load FAISS index
+                vectorstore = FAISS.load_local("faiss_index")
+                docs = vectorstore.similarity_search(context_query)
+                
+                # Add RAG context to action
+                action_dict = action.model_dump()
+                action_dict["rag_context"] = [
+                    {
+                        "content": doc.page_content,
+                        "metadata": doc.metadata
+                    } for doc in docs
+                ]
+            except Exception as e:
+                logger.warning(f"RAG lookup failed: {str(e)}")
+                action_dict = action.model_dump()
+        else:
+            action_dict = action.model_dump()
+
+        # Run evaluation workflow
+        result = evaluate_financial_action(action_dict)
+        
+        if result.get("status") == "error":
+            raise HTTPException(
+                status_code=500,
+                detail=result.get("errors", ["Unknown error occurred"])
+            )
+
+        return {
+            "status": "success",
+            "evaluation": result.get("evaluation", {}),
+            "rag_sources": [
+                doc.get("metadata", {}).get("source")
+                for doc in action_dict.get("rag_context", [])
+            ] if "rag_context" in action_dict else []
+        }
+
+    except Exception as e:
+        logger.error(f"Evaluation with context failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Health check endpoint
 @app.get("/health")
 async def health_check():
-    from datetime import datetime
-    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+    """Check API and Bedrock client health"""
+    try:
+        client = BedrockClient()
+        test_response = client.generate_response("test")
+        return {
+            "status": "healthy",
+            "bedrock_client": "connected" if test_response.get("status") == "success" else "error"
+        }
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "error": str(e)
+        }
 
 # ----------------------------
 # Endpoints for Streamlit
@@ -151,30 +223,44 @@ async def session_upload(
 
 @app.post("/chat")
 async def chat(payload: Dict[str, Any]):
-    """
-    Chat façade that maps to the existing /evaluate logic.
-    Expects: session_id, message, company_profile, (optional) chat_history, doc_ids
-    """
-    sid = payload.get("session_id")
-    if not sid or sid not in app.state.sessions:
-        raise HTTPException(status_code=404, detail="session not found")
-
-    message = (payload.get("message") or "").strip()
-    profile = payload.get("company_profile") or {}
-
-    # Map company_profile + message into FinancialAction
-    sector = str(profile.get("sector") or "Energy")
-    activity = str(profile.get("activity") or "General activity")
-    description = str(profile.get("description") or message or "No description")
+    """Process chat messages using our evaluation workflow"""
     try:
-        amount = float(profile.get("amount") or 0.0)
-    except Exception:
-        amount = 0.0
-    currency = str(profile.get("currency") or "SGD")
-    additional_context = {
-        k: v for k, v in profile.items()
-        if k not in {"sector", "activity", "description", "amount", "currency"}
-    } or None
+        # Extract action details from chat payload
+        action = {
+            "description": payload.get("message", ""),
+            "amount": float(payload.get("amount", 0)),
+            "currency": payload.get("currency", "SGD"),
+            "organization": payload.get("company_profile", {})
+        }
+        
+        # Run evaluation
+        result = evaluate_financial_action(action)
+        
+        if result.get("status") == "error":
+            raise HTTPException(
+                status_code=500,
+                detail=result.get("errors", ["Unknown error occurred"])
+            )
+
+        evaluation = result.get("evaluation", {})
+        
+        # Format response for chat
+        response_text = (
+            f"**Classification**: {evaluation.get('classification', 'Unknown')}\n\n"
+            f"**Explanation**: {evaluation.get('explanation', 'No explanation available')}\n\n"
+            "**Required Documentation**:\n" + 
+            "\n".join([f"- {doc}" for doc in evaluation.get("required_documentation", [])])
+        )
+
+        return {
+            "assistant": {"text": response_text},
+            "decision": {"label": evaluation.get("classification")},
+            "raw_evaluation": evaluation
+        }
+
+    except Exception as e:
+        logger.error(f"Chat processing failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
     action_model = FinancialAction(
         sector=sector,
