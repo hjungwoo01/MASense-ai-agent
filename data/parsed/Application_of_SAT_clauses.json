@@ -1,0 +1,3602 @@
+[
+  {
+    "id": "Application_of_SAT-p1-3a8a059c",
+    "doc_id": "Application_of_SAT",
+    "page": 1,
+    "section_path": [],
+    "kind": "note",
+    "text": "Information Note",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 1
+    }
+  },
+  {
+    "id": "Application_of_SAT-p1-72b6eeff",
+    "doc_id": "Application_of_SAT",
+    "page": 1,
+    "section_path": [],
+    "kind": "note",
+    "text": "Application of the Singapore-Asia Taxonomy in the Financial and Corporate Sectors March 2025",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 1
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-f5cbdf6b",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "Contents",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-17d4649d",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "02 03",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-74765436",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "Executive Summary 1 — Background of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-7316b3d5",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "06",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-073cc387",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "2 — Users of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-39f193cf",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "07",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-00b3a8b4",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "3 — Application of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-f1abd670",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "15",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-57b35bbd",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "4 — \u0007Retrospective assessments of local banks’ loan portfolio and asset managers’ funds alignment with the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-0650d712",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "5 — Conclusion",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-0716d970",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "17",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-9fc3b4b0",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "Annex",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p2-9e6a55b6",
+    "doc_id": "Application_of_SAT",
+    "page": 2,
+    "section_path": [],
+    "kind": "note",
+    "text": "18",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 2
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-3abcc2cf",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "note",
+    "text": "Executive Summary",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-f5d3837f",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "note",
+    "text": "This information note sets out how the Singapore-Asia Taxonomy for Sustainable Finance (SAT) is being used by various market participants and the progress in its adoption since its launch in December 2023.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-8258e042",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "note",
+    "text": "This information note aims to raise awareness on the different ways the SAT is being used by profiling actual applications across different user groups to date, including some that have not been publicly announced before. This note also provides detailed explanations on how different user groups can use the SAT. We hope this encourages more users to consider referencing the SAT as a complementary tool to achieve their green and transition financing objectives. This information note also highlights growth opportunities for other stakeholders such as entities in the professional services sector.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-455bdcbc",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "note",
+    "text": "A wide range of market participants including the public sector, the financial sector, the professional services sector, and real economy corporates can reference or align with the SAT green and transition criteria to originate green and transition financing instruments, and use it as a reference tool when developing internal decarbonisation strategies. (Details in Section 2)",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-f9079f0d",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "In just over a year since its launch, the SAT has been adopted by various banks and corporates. Financial products have been developed based on the thresholds and criteria of the SAT, sustainable finance frameworks across banks and corporates have been aligned with or have made reference to the SAT criteria, and some corporates’ decarbonisation plans have also been guided by the SAT. (Details in Section 3 and 4)",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-238fa642",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "note",
+    "text": "Broadly, • Singapore’s three local banks (DBS, OCBC, UOB) have either completed or are in the process of updating their sustainable financing frameworks to integrate the SAT. Moving forward, the banks will be using the SAT as a key reference tool in the structuring of green and transition financing solutions.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-d7e160d4",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "• A number of other banks will be using the SAT as a key reference document for evaluating transition finance eligibility for assets booked in Singapore. Other banks plan to use the SAT as an additional assessment tool alongside other taxonomies or market standards when evaluating green and transition financing solutions.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p3-f3a82fc1",
+    "doc_id": "Application_of_SAT",
+    "page": 3,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "• Several corporates, such as Green Esteel and OUE Limited, have referenced the SAT to structure their sustainable financing solutions. In September 2024, OUE Limited was also the first corporate to issue a green bond which is aligned with the SAT, where the bond’s proceeds are allocated to green projects that are aligned with the SAT green activity thresholds. Collaboration between financial institutions and the broader ecosystem will be crucial to enhance the taxonomy’s adoption and effectiveness. The Singapore Sustainable Finance Association (SSFA) is driving several initiatives to support the application of the SAT. These efforts will help to promote a deeper understanding of the SAT’s activities while enhancing transparency and consistency. (Details in Section 5)",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 3
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-2b3892c4",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "note",
+    "text": "1 — \u0007Background of the Singapore-Asia Taxonomy for Sustainable Finance",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-bd8f3fb0",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "definition",
+    "text": "Taxonomies provide clear and science-based definitions for eligible corporate activities that can be considered as green and transition, and can help channel investments and financing towards green and transition projects. Green activities in the Singapore-Asia Taxonomy for Sustainable Finance (SAT) are defined as activities that are operating near zero emissions or are on a 1.5 degree-aligned pathway, while transition activities are defined as those moving towards a green transition pathway within a defined time frame or are facilitating significant emissions reduction in the short term.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-54ddc98f",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "note",
+    "text": "Taxonomies can help mitigate concerns of greenwashing when green and transition financial instruments are structured. When aligned with other international sustainability standards and made interoperable with global taxonomies, this can further enable cross-border financing and investments towards green and transition projects. In addition, taxonomies’ transition activity criteria should also take into account country or regional differences, such as the differing pace of decarbonisation and advancement or availability of technologies in the country or region.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-f30f6af3",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "In December 2023, the Monetary Authority of Singapore (MAS) launched the world’s first multi-sector transition taxonomy, the SAT. The SAT was launched after four rounds of public consultation and sets out clear, science-based thresholds and criteria for defining green and transition activities in Asia that substantially contribute to climate change mitigation. The SAT scopes in activities across eight sectors that are responsible for 90% of ASEAN’s greenhouse gas (GHG) emissions and over 40% of ASEAN’s economic value-add. In addition, the SAT also includes an addendum covering managed coal phase-out, which aims to provide a credible standard to increase participation in projects for the early retirement of coal-fired power plants (CFPPs) that are aligned with a 1.5 degrees Celsius (1.5°C) decarbonisation pathway for the global power sector.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-151c6f99",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "note",
+    "text": "The key features of the SAT are:",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-4cd1900a",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "• The activities must contribute to at least one of the five environmental objectives (EOs) which are – (i) climate change mitigation, (ii) climate change adaptation, (iii) protection of healthy ecosystems and biodiversity, (iv) promotion of resource resilience and circular economy, and (v) pollution prevention and control. The SAT currently focuses on defining activities that support the climate change mitigation objective.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-a314ecc5",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "note",
+    "text": "• The SAT is comprehensive in coverage and scopes in activities across eight priority sectors that contribute materially to ASEAN emissions and Gross Value Add. The sectors are – (i) Energy, (ii) Transportation, (iii) Real Estate & Construction, (iv) Industry, (v) Carbon Capture & Storage, (vi) Information & Communications Technology, (vii) Waste & Water, and (viii) Forestry & Agriculture.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-86f5189e",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "• The SAT introduced a world-first traffic light system which outlines guiding principles on how to define green and transition activities. The SAT’s transition thresholds and criteria have been adapted to reflect local or regional contexts by considering local regulations and market standards, technology availability and level of deployment, as well as existing production processes.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p4-e5f487a9",
+    "doc_id": "Application_of_SAT",
+    "page": 4,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 1 — B A C K G R O U N D",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 4
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-9f436ac3",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Key features of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-69a19e2f",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Eight Focus Sectors",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-0e9e9605",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Covering 90% of GHG emissions and more than 40% of economic value-add across ASEAN",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-437bcb15",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Energy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-a013a57a",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Carbon Capture & Storage",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-72d1a60e",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Information & Communications Technology",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-145a070a",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Transportation",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-912bbaea",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Waste & Water",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-bd5fd25e",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Real Estate & Construction",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-8cb502a1",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Industry Forestry & Agriculture",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-e4b11d93",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Traﬃc Light System",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-a50a84d4",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Green activities are operating near zero emissions or are on a 1.5 degree-aligned pathway.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-9c4d567c",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Amber activities are either transitioning towards green within a certain time frame, or are facilitating signiﬁcant emissions reductions in the short-term.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-328b6685",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Ineligible activities refer to harmful activities that are not currently compatible with a net zero trajectory.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-a92d3877",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Environmental Objectives",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-5fe1235c",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Climate change mitigation Pollution prevention and control",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-a4986fae",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Climate change adaptation",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-331ec246",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Resource resilience",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-67c1e141",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "Biodiversity protection",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p5-e5f487a9",
+    "doc_id": "Application_of_SAT",
+    "page": 5,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 1 — B A C K G R O U N D",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 5
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-e2b776d6",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "According to the Sustainable Banking and Finance Network (SBFN)1, more than 47 sustainable finance taxonomies have been issued globally as of February 2024.2 Key jurisdictions that have introduced taxonomies include the European Union (EU), which has set a benchmark globally with the EU Taxonomy, as well as China and Singapore. In Southeast Asia, Thailand, Indonesia and Malaysia have developed their own national taxonomies. At the regional level, criteria for four sectors have been developed under the ASEAN Taxonomy, and the final version of the taxonomy which includes the remaining five sectors will be launched by the end of 2025.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-86045c3b",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "In the Asia-Pacific (APAC), some jurisdictions have introduced or are in the process of introducing transition criteria within their domestic or regional taxonomies. The ASEAN Taxonomy5 has a traffic light system and incorporates a multi-tiered approach comprising a principle-based Foundation Framework (FF) and a criteria-based Plus Standard (PS) which has two tiers under the transition category to account for varying developmental standards across the region. The Hong Kong Taxonomy6, launched in May 2024, currently only includes the green category for four focus sectors but there are plans to expand it to include more sectors and also transition activities. Australia7 has publicly consulted on its taxonomy which will include transition categories and decarbonising measures for six sectors. Outside of APAC, Canada has laid out plans to include a transition category in its taxonomy which defines transition investments in support of a net-zero transition.8",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-597ef5d0",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "Globally, recognising the importance of reducing complexity and fragmentation, there are efforts to increase the interoperability of taxonomies’ green activities criteria. These efforts are spearheaded by the International Platform on Sustainable Finance (IPSF) which comprises 20 members. In November 2024, the MAS, the People’s Bank of China (PBOC) and the European Union Directorate- General for Financial Stability, Financial Services and Capital Markets Union (EU DG-FISMA) completed the mapping of the SAT against the PBOC’s Green Bond Endorsed Project Catalogue and the EU Taxonomy, under the Multi-jurisdiction Common Ground Taxonomy (M-CGT).9",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-d6af7585",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "1 \u0007SBFN, facilitated by IFC as secretariat, and supported by the World Bank Group, is a knowledge sharing and capacity building platform for sustainable finance.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-b28b747f",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "2 SBFN Toolkit: Sustainable Finance Taxonomies. Feb 2024. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-cb7950a0",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "3 ASEAN Taxonomy criteria for the first four sectors are completed: energy, carbon capture & storage, transport, construction & real estate.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-b051ba8f",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "4 \u0007The five additional sectors are agriculture, forestry & fishing, manufacturing, water supply, sewerage & waste management, information & communications technology, and professional, scientific & technical activities.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-488b7d32",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "5 \u0007The Foundation Framework provides a qualitative assessment of activities while the Plus Standard (PS) uses metrics and thresholds to further quality and benchmark eligible green and transitional activities, where there are three tiers under the PS: Green Tier 1, Amber Tier 2 and Amber Tier 3. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-9702bd7a",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "6 \u0007The Hong Kong Taxonomy currently has 12 economic activities under four sectors: power generation, transportation, construction, and water and waste management. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-b0b6efe7",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "7 \u0007The six sectors under the Australia Taxonomy are minerals, mining & metals, electricity generation & supply, construction & built environment, transport, manufacturing & industry and agriculture & land use. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-3b3ad7e8",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "8 \u0007The Canadian Taxonomy will focus on the following sectors: electricity, transportation, buildings, agriculture & forestry, manufacturing and extractives (including mineral extraction and processing, and natural gas). Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-e0979e79",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "9 \u0007The International Platform on Sustainable Finance presents the Multi-Jurisdiction Common Ground Taxonomy to enhance interoperability of taxonomies across EU, China and Singapore, Nov 2024. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p6-e5f487a9",
+    "doc_id": "Application_of_SAT",
+    "page": 6,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 1 — B A C K G R O U N D",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 6
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-b2d1f58d",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "2 — \u0007Users of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-5629cde1",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "The SAT serves a wide range of market participants including the public sector, the financial sector, the professional services sector and the corporate sector.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-2f959700",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Users How is the SAT used?",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-7bb72f0a",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "Public sector The public sector can use the SAT by integrating the SAT criteria into government agencies’ sustainable finance frameworks that govern the issuance of public sector green instruments. This ensures that green activities financed by the government are aligned with the SAT’s defined thresholds. The SAT can also be incorporated into government schemes that promote green business activities, encouraging the adoption of activities aligned with the SAT criteria.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-b7409ca0",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Banks Banks can use the SAT as a reference tool to guide how banks evaluate corporate loans, fund infrastructure projects and structure green, transition and sustainability-linked instruments. Banks can also leverage the SAT during engagements with corporate clients to steer them towards investing in activities that support the decarbonisation outcomes that the clients have identified.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-5c469460",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Beyond structuring financing solutions, banks can also apply the SAT criteria when issuing their own green or transition bonds or when raising sustainable financing as borrowers.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-0015faad",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Asset managers",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-e461edf6",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "Asset managers can use taxonomies such as the SAT to ensure that their sustainability-related funds are aligned with credible thresholds and criteria, which in turn informs investment eligibility and portfolio allocation of funds.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-aae73d75",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Corporates Corporates can evaluate whether planned projects or capital expenditure qualify as green or transition activities as set out under the SAT, and engage financial institutions (FIs) to obtain financing through green, transition or sustainability-linked instruments.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-0ccb8b48",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "definition",
+    "text": "Beyond FIs and corporates, other stakeholders are also involved in the structuring of the SAT. The professional services sector plays a crucial role in the successful implementation and credibility of SAT-aligned financing. Professional service providers, such as consultants, external review providers, legal professionals and auditors, help support enhancing the credibility of green and transition financing frameworks and instruments, through the following means:",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-8762a9bc",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Consultants Consultants can play a key role through market research, offering strategic advice and advising borrowers and issuers in developing their green or transition finance frameworks that could reference or align with the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-26333761",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "External review providers",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-989578b8",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "External reviewers will provide independent assessments for a borrower or issuer’s framework, bond or loan, by verifying compliance with internationally recognised principles, standards or taxonomies like the SAT. • \u0007Second-Party Opinion (SPO) Providers – SPO providers evaluate and provide an opinion on the alignment of a borrower or issuer’s framework, bond or loan with international and regional standards, such as the International Capital Market Association’s Green Bond Principles (ICMA GBP), ASEAN Green Bond Standards, the Green Loan Principles (GLP) and taxonomies like the SAT. • \u0007Scoring/Rating Providers – Scoring or rating providers assess and assign a score or rating to a borrower or issuer’s framework, bond or loan against established criteria such as the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-b949132f",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Legal professionals Legal professionals ensure that all financial instruments referencing the SAT are properly documented and comply with legal requirements.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-0a678920",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "Auditors Auditors provide pre-issuance assurance of the alignment of a borrower and issuer’s framework with the SAT criteria. They also provide post-assurance services by verifying that the use-of- proceeds and impact reporting align with the borrower or issuer’s stated commitments under its green or transition financing framework, including an assessment of the bond or loan’s continuous alignment with the relevant SAT criteria.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p7-3b806694",
+    "doc_id": "Application_of_SAT",
+    "page": 7,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 2 — U S E R S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 7
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-e6a2e9fa",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "3 — \u0007Application of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-64445fc9",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "This section showcases how the SAT is being used by various stakeholders outlined in Section 2 since its launch. This includes publicly announced developments by the Singapore Government such as the alignment of the Singapore Green Bond Framework (SBGF) with the SAT and the inclusion of SAT- aligned activities under the Enterprise Financing Scheme-Green (EFS-Green).",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-252ba58b",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "Section 3 covers efforts that the financial and corporate sectors have taken to align or reference the SAT in their respective sustainable financing frameworks, as well as profile examples of actual market transactions that have referenced the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-80d55fd9",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "A. Public sector",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-d8a03351",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "(I) \u0007Alignment of the Singapore Green Bond Framework (SGBF) with the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-b80da6e9",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "The SGBF is an important component of Singapore’s overarching sustainability strategy and plays a crucial role in advancing Singapore’s national net-zero ambitions. It governs the issuance of sovereign green bonds under the Significant Infrastructure Government Loan Act 2021 (SINGA) and serves as a reference for Statutory Boards developing their own green bond frameworks. The inaugural version was published in June 2022.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-da4e7239",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "In January 2025, the SGBF was updated by the Ministry of Finance (MOF) to align green thresholds with those in the SAT, with DNV providing a Second Party Opinion (SPO) confirming the framework’s alignment with the International Capital Market Association’s (ICMA) Bond Principles (GBP), the ASEAN Green Bond Standards, and the SAT. The addition of the SAT thresholds provides more details on the screening criteria for projects to qualify for green bond financing, and demonstrates the Singapore Government’s continued commitment to high-quality public sector green bond issuances. Following the alignment of the SGBF with the SAT, the Statutory Boards of the Singapore Government will also be updating their respective frameworks to align with the SAT. All public sector green bonds issued under the updated SAT-aligned frameworks will be SAT-compliant, in addition to complying with international market standards.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-1e06189e",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "(II) \u0007Expansion of Enterprise Financing Scheme-Green (EFS-Green) to include the SAT’s green and transition activities",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-43da988d",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "The EFS-Green, launched by EnterpriseSG in October 2021, was expanded on 1 April 2024 to incorporate the SAT activities and extended for two years until 31 March 2026. Previously only applicable to developers of green solutions, the scheme now supports adopters of green or transition solutions and technologies, referencing the SAT’s green and transition criteria under the four qualifying sectors are – (i) Clean Energy & Decarbonisation, (ii) Circular Economy & Resource Optimisation, (iii) Green Infrastructure, and (iv) Clean Transportation (Land, Sea, and Air).10",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-47e201d0",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "The EFS-Green provides 70% risk-sharing to support lending by participating FIs to qualifying Singapore enterprises. This enables companies to access financing for the adoption of credible green technologies, enabling meaningful carbon footprint reduction and contributing to Singapore’s green transition.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-2e7af51d",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "B. Financial sector",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-baaafede",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "FIs such as banks offering financial products (e.g. bonds or loans) to clients can reference the SAT, alongside global green and sustainable finance instrument guidelines and other existing taxonomies, to ensure that the green and transition financial products are credible, hence mitigating the risks of greenwashing.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-6d4093fe",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "10 FAQ on Enterprise Financing Scheme – Green. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p8-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 8,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 8
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-8e53edf9",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "Banks can use the SAT to evaluate the eligibility of projects when structuring financing transactions for their clients and provide strategic steer to their clients on their decarbonisation efforts through client engagements. Asset managers can use taxonomies such as the SAT to ensure that their sustainability- related funds are aligned with credible thresholds and criteria, which in turn informs investment eligibility and portfolio allocation of funds. Refer to Section 4 for examples of the degree of alignment with the SAT for banks’ and asset managers’ lending portfolio and funds retrospectively.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-fc47049b",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "There are three key ways banks can use the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-739d493d",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "(I) \u0007Integration into Sustainable Financing Frameworks",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-d72048fb",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "Sustainable financing frameworks set out the banks’ approaches to evaluate the eligibility of green and transition projects and govern the origination of financing solutions to ensure they align with the bank’s sustainability objectives or taxonomies. Many of these frameworks are aligned with internationally recognised market principles and taxonomies. The frameworks guide how banks evaluate corporate loans, fund infrastructure projects and structure green, transition and sustainability financial instruments.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-95cbfcdd",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "(II) \u0007Origination of green and transition financing solutions for their clients",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-e7ada781",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "Banks may assist corporates in raising green and transition capital through the following two capital market instruments –",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-f061d5fb",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "a. Use-of-proceeds instruments, such as green and transition labelled bonds and loans, where capital raised is exclusively allocated to green and transition projects set out in the loan or bond framework, which may reference the SAT; and",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-17855bb5",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "b. Sustainability-linked instruments, such as sustainability-linked loans and sustainability-linked bonds, where the funds can be used for general corporate purposes, but the loan and bond terms are tied to the issuer or borrower achieving predefined sustainability-related KPIs or targets which may reference the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-9e6db3a2",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "(III) \u0007Client engagement on their wider sustainability strategy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-c24ebd10",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "Banks can also leverage the SAT during engagements with corporate clients to steer them towards investing in activities that support decarbonisation outcomes that the clients have identified.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-58776a44",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "The section below shows how banks have used the SAT in each of the three ways since the launch of the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-739d493d",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "(I) \u0007Integration into Sustainable Financing Frameworks",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-f834d8ac",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "Local and some foreign banks with a presence in Singapore have made strides in referencing the SAT in their sustainable financing frameworks.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-8139ee19",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "Whilst most banks’ sustainable financing frameworks are designed to support the structuring of green, transition and sustainability-linked financing instruments, some banks have introduced standalone transition frameworks to offer more comprehensive coverage on the hard-to-abate sectors and a more tailored approach when supporting companies that engage in transition activities. Standalone transition frameworks generally provide more granular details on the types of projects accepted, by focusing on sectors that face greater challenges in decarbonisation and addressing the unique needs of hard-to- abate sectors. Banks that have standalone transition finance frameworks are DBS, Maybank, Standard Chartered and UOB.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-1ef2691f",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "Singapore’s three local banks (DBS, OCBC, UOB) have either completed or are in the process of updating their sustainable financing frameworks to integrate the SAT, and will be using the SAT as a key reference tool in the structuring of green or transition financing solutions. For example, all",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p9-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 9,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 9
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-92ebe07e",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "sustainable financing origination and refinancing activities by UOB will adhere to SAT-referenced requirements from 1 July 2025. See Annex for examples of transactions facilitated by local banks that are aligned to the SAT even though they were not formally assessed to be so at the point of issuance.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-ad5d23e5",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "In addition, Maybank has updated its sustainable product framework and transition finance framework, while CIMB is in the process of revising theirs. For assets booked in Singapore, Maybank stated that the SAT will serve as a key reference document solely for evaluating transition finance eligibility, while CIMB will use the SAT as a primary technical screening reference for assessing both green and transition finance eligibility. Both banks will also reference the SAT alongside other taxonomies or market standards for global deals.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-bf492f20",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "safeguard",
+    "text": "For the other foreign banks, the SAT is used as an additional assessment tool alongside other taxonomies or market standards when evaluating green and transition financing solutions. For instance, Crédit Agricole CIB has indicated that the SAT will be used as an additional tool to reflect local context and specificities, alongside the EU Taxonomy, given that the bank’s operations are primarily in the European market. HSBC refers to local and regional taxonomies, including the SAT, as part of their internal governance process and policies. Standard Chartered has adopted the SAT in its Transition Finance Framework as an additional reference point, and the bank is exploring including the SAT into its other sustainable finance frameworks.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-03c93975",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "(A) Banks which use the SAT as the primary reference tool for all their sustainable finance transactions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-bbb6aa35",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS DBS’ Sustainable Finance Framework and Taxonomy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-99105a17",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "In 2020, DBS launched its sustainable and transition finance framework and taxonomy to help clients advance on their sustainability agenda. DBS has released its updated Sustainable Finance Framework and Taxonomy and its Transition Finance Framework in March 2025.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-077f6ff9",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "The updated Transition Finance Framework11 reflects the latest developments in the transition finance space. The framework is intended to capture opportunities aligned with internationally or nationally recognised and credible taxonomies including the SAT where possible, keeping in mind that guidance from taxonomies and industry best practices do not yet exist for various transition actions and activities. For sectors like energy and real estate, the taxonomy has specific references to the SAT transition category and its TSCs.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-20edd30d",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "The framework will continue to serve as useful guidance for DBS when interfacing with clients, particularly in supporting corporates with the development of transition plans and projects for transition financing.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-3e3bb441",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "OCBC OCBC’s Sustainable Finance Taxonomy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-6dd17deb",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "OCBC has integrated the SAT into its Sustainable Finance Taxonomy, which is an internal document the bank uses to determine eligibility criteria for green, social or transition activities through use-of- proceeds Sustainable Finance solutions.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-26899ee8",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "OCBC’s Sustainable Finance Taxonomy serves as a key reference for client engagement and financing decisions, enabling OCBC to assess clients’ alignment with the SAT criteria, and offer structured guidance on how companies can position their financing and investments within green and transition categories.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-c54c9c40",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "UOB UOB’s Sustainable Finance Framework (which includes Transition Finance Framework)",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-f83dc42d",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "UOB has referenced and incorporated the SAT into all six of UOB’s Sustainable Finance Frameworks12, namely the Sustainable Cities Framework, Circular Economy Framework, Green Building Framework, Sustainable Food & Agribusiness Framework, Transition Finance Framework and Sustainable Trade Framework. The principles of incorporating the SAT into the UOB frameworks include referencing the SAT technical screening criteria (TSCs) and ensuring value chain inclusion to support SMEs further down the value chain.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-9df6a79d",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "As part of its suite of six sustainable frameworks, UOB has expanded its Transition Finance Framework to cover all qualifying Amber activities in the SAT and adopted a risk-based documentation approach tailored to borrower and ESG risk profiles based on client and sector specialist feedback.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-b5e5504d",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "The frameworks are undergoing external independent validation by Second Party Opinion consultant, ERM, and will be publicly launched in March 2025. Following which, all new and refinanced sustainable financing from 1 July 2025 onwards will adhere to SAT-referenced requirements.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-b30d7853",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "11 DBS Bank Institutional Banking Group (IBG) Transition Finance Framework. Link. 12 UOB Sustainable Finance Frameworks. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p10-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 10,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 10
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-ec4aed32",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "(B) \u0007Banks which use the SAT as the primary reference tool for Singapore-originated sustainable finance transactions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-67a159dd",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "CIMB CIMB’s upcoming update to its Sustainable Finance Framework",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-05791b23",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "CIMB Group is currently revising its Sustainable Finance Framework13, with plans to adopt the SAT as the primary technical screening reference for CIMB Singapore deals. Additionally, CIMB incorporates the SAT principles and screening criteria as a reference in developing its internal taxonomy for broader regional application.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-487f35e6",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "Maybank Maybank’s Sustainable Product Framework and Transition Finance Framework",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-fc941eb2",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "safeguard",
+    "text": "Maybank’s Sustainable Product Framework (SPF)14 developed in 2022 and subsequently enhanced in August 2023 and October 2024, outlines the eligible Green and Social activities across key sectors – energy, transportation, green buildings and management of living natural resources and land use. Aligned with global standards, including the ICMA GBP, LMA GLP, it aligns to jurisdiction- specific taxonomies like the SAT. Notably, the SPF’s green criteria for green buildings closely align with the SAT’s real estate/construction sector, with some instances of stricter requirements.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-85d62a90",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "In addition to the SPF, Maybank has also developed a standalone Transition Finance Framework (TFF)15, launched in 2023 and enhanced in January 2025. It provides a structured approach in classifying transition finance in line with global standards and science-based taxonomies supporting the Paris Agreement’s 1.5°C/below 2°C goal. Recognising the differentiated pace of transition required across ASEAN nations, Maybank’s TFF undertakes a principled and pragmatic approach to transition finance transactions. Where national/regional pathways and taxonomies are present and are aligned to the temperature outcome of the Paris Agreement, the bank may choose to reference these taxonomies in determining if an activity can qualify for transition finance. This means that for assets booked in Singapore, the SAT serves as a key reference for evaluating transition finance eligibility. The TFF’s eligible transition activities for Steel Manufacturing, Natural Gas Transmission and Distribution, and International Aviation largely align with SAT’s green or amber categories, with some instances of stricter requirements in place.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-dbdaa0af",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "(C) \u0007Banks which use the SAT as an additional tool, alongside other taxonomies or standards for sustainable finance transactions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-c4dd8456",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "Crédit Agricole CIB’s Green Bond Framework",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-4a24cb9c",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "Crédit Agricole CIB",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-9de02caa",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "As foreign banks are required to comply with market regulations in their respective home countries, Crédit Agricole CIB primarily aligns its Green Bond Framework16 with the EU Taxonomy, given its established role in the European market. Nonetheless, the bank refers to the SAT as an additional tool to assess the greenness of transactions specific to this region, referencing the SAT for regional nuances or Singapore-based deals.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-e860a894",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "HSBC HSBC’s Approach",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-cdbd72e0",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "safeguard",
+    "text": "HSBC has established an internal taxonomy and global governance process which evaluates eligible use-of-proceeds financing activities, with the aim of ensuring high-level consistency across markets. As part of this, HSBC draws on international standards and taxonomies, as well as local and regional taxonomies, including the SAT. A summary of the bank’s internal taxonomy is in HSBC’s Sustainable Finance and Investment Data Dictionary 2024.17 HSBC views the SAT as a useful tool for sustainability classification in the region.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-35a15ee6",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "Standard Chartered’s Green and Sustainable Product Framework, Sustainability Bond Framework and Transition Finance Framework Standard Chartered’s Green and Sustainable Product Framework18 and Sustainability Bond Framework19 are largely based on international standards, including the EU Taxonomy which is taken by international market participants as the main reference point. Given the SAT’s interoperability with the EU Taxonomy on green activities, the bank will look to include the SAT as a potential reference point when its frameworks are updated annually.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-fa2881d1",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "Standard Chartered",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-dda15356",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "Standard Chartered also published its Transition Finance Framework20 in 2021 alongside its first net zero financed emissions targets, which outlines the activities the bank seeks to finance in high- emitting sectors to support decarbonisation targets. In 2024, following the publication of the SAT, the bank adopted the SAT as an additional reference point as part of its annual review.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-a8767843",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "13 CIMB Sustainable Finance Framework. Link. 14 Maybank Sustainable Product Framework 2023. Link. 15 Maybank Transition Finance Framework 2023. Link. 16 Crédit Agricole Green Bond Framework. Nov 2023. Link. 17 HSBC Sustainable Finance and Investment Data Dictionary. Dec 2024. Link. 18 Standard Chartered Green and Sustainable Product Framework 2024. Link. 19 Standard Chartered Sustainability Bond Framework, 2024. Link. 20 Standard Chartered Transition Finance Framework, 2024. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p11-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 11,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 11
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-cccc58e3",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "(II) \u0007Origination of green and transition financial solutions for their clients",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-a6e8b595",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "Upon updating their financing frameworks to make reference to the SAT, banks will be able to originate or structure green or transition financing solutions such as bonds or loans for corporates seeking to access green or transition financing. Banks can help structure bonds and loans that reference the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-fdcd402a",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "For instance, the SAT’s green and transition classifications can define which projects qualify for funding based on the criteria set out. Banks can also align the KPIs or sustainability performance targets (SPTs) of sustainability-linked loans or bonds with specific thresholds from the SAT. Illustrative examples of how the SAT can be applied to the structuring and origination of use-of-proceeds loan and sustainability-linked loans are set out in the box items below.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-f22cf214",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "How the SAT can be applied to Use-of-Proceeds loans",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-e9c564f3",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "COMPONENTS CRITERIA",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-8a740dc4",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "Use of Proceeds Financing/re-financing of eligible Green or Amber projects",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-9c7fa296",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "• \u0007Green or Amber as categorised under the SAT can be financed by a Green or Amber Transition loan",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-356a192b",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "1",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-1dfa05b6",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "Process of Project Evaluation and Selection Two-step approach to select eligible assets/projects, with independent teams proposing and approving",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-9fa40900",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "• Borrowers to clearly communicate: – \u0007How the project satisfies requirements in the SAT – \u0007The process of determining how their projects fit within the eligible categories – \u0007Any related eligibility criteria",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-da4b9237",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "2",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-89508b8a",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "• \u0007Borrowers to disclose standards/ certifications they are obtaining",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-b48b14bb",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "Management of Proceeds Appropriate management of proceeds to maintain transparency and promote integrity",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-ae509355",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "• \u0007Loan proceeds to be credited in a dedicated account, or otherwise tracked by the borrowers to ensure transparency in their use",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-77de68da",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "3",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-18b1d200",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "safeguard",
+    "text": "• \u0007Borrowers to establish an internal governance process to track the funds allocation towards eligible projects",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-a7cedf14",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "Reporting Annual reporting on allocation of proceeds, and indicators such as: • \u0007Number and types of green building certification obtained • Rating level of certification",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-292b6b81",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "• \u0007Borrowers to keep up-to-date information of the use of proceeds until the loan is fully drawn, and thereafter of any developments",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-1b645389",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "4",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-07889e3f",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "Structure guided by the Loan Market Association’s Green Loan Principles (GLP) and other industry and market best practices. The GLP was developed by APLMA, LMA and LSTA.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p12-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 12,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 12
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-8a63d14a",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "How the SAT can be applied to Sustainability-linked loans",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-bf1be2b7",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "definition",
+    "text": "Definition",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-71a1c669",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Sustainability-Linked Loans (SLLs) are any types of loan instruments and/or contingent facilities which incentivise the borrower’s achievement of ambitious, predetermined sustainability performance objectives.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-c961da4e",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Key Features",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-6b182e41",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "Key Performance Indicators (KPls) are quantifiable metrics to measure performance of selected indicators. KPIs, either external or internal, must be material to the borrower’s core sustainability and business strategy.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-236b9bc3",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Sustainability Performance Targets (SPTs) are measurable improvements in KPIs. They reflect improvements in the borrower’s sustainability profile. There can be one or more SPTs per KPI. Financing will have a pricing mechanism linked to the achievement of SPTs.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-150b1adb",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Most sustainbility-linked loans will be used for general corporate purposes; there are no restrictions on the deployment of the financing.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-9d6e5b44",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Guidelines & Pillars",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-850529d6",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "ICMA and the Loan Market Associations (APLMA/LMA/LSTA) have published voluntary guidelines with the following pillars:",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-2c066df8",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "3. Financing Characteristics 4. Reporting 5. Verification",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-1bb1e3eb",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "1. Selection of KPIs 2. \u0007Calibration of Sustainability Performance Targets",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-35d92fc9",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Applicability of the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-3a507a15",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Taxonomy classifies...",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-63fd3c93",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Possible applicability to ‘KPI-Linked’ labels through:",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-0df9dc02",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "Revenue CapEx OpEx",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-78b07303",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "2. Taxonomy as a guidance for KPIs",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-8d01c976",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "1. Taxonomy alignment as a KPI",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-530d4265",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "...into these categories",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-933bf21a",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Green",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-4dbd2d90",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "e.g. Decarbonisation targets aligned to metrics / thresholds set in the Taxonomy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-b05884ec",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "e.g. Proportion of Revenue / CapEx / OpEx aligned to the Taxonomy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-27a01d47",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Amber",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-2a012a76",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Amber (Measures)",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p13-aacd315b",
+    "doc_id": "Application_of_SAT",
+    "page": 13,
+    "section_path": [],
+    "kind": "note",
+    "text": "Ineligible",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 13
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-0ed2b0dc",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "(III) \u0007Client engagement on their wider sustainability strategy Besides using the SAT in structuring and originating financing solutions such as green, transition or sustainability-linked loans and bonds, banks can use the SAT as a tool to engage with clients on their sustainability journey.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-f9938707",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "As the SAT provides clear, science-based definitions of green and transition, banks can use the SAT to inform their corporate sustainability strategies or review and identify areas where current operations can be transitioned to meet the definitions under the taxonomy and develop strategies and plans to move towards those thresholds.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-21e7eeb8",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "For instance, some banks have started to use the SAT in client transition dialogues to guide their clients’ transition from high-emitting activities towards more energy-efficient technologies that meet the green and transition criteria under the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-dd7df6c5",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "C. Corporate sector",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-92045e8f",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "Corporates can use the SAT to evaluate whether planned projects or capital expenditure qualify as green or transition activities as set out under the SAT, and engage banks to to obtain financing through green, transition or sustainability-linked loans and bonds. Corporates may also use the taxonomy to identify emerging opportunities in green and transition sectors.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-fe636ce2",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "Several corporates have referenced the SAT to structure their sustainable financing, with transactions demonstrating its application in green and transition finance. For example, Green Esteel and OUE Limited have taken the step to develop their financing frameworks in alignment with the SAT. OUE Limited has also issued an inaugural green bond aligned with the SAT, where the bond’s use-of- proceeds allocated is in accordance with the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-3e0585c3",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "Corporate Sustainable Finance frameworks",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-40310f63",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "Green Esteel’s Green and Transition Framework OCBC partnered Green Esteel to develop the steel sector’s first Green and Transition Finance Framework, referencing the SAT’s technical screening criteria. The Framework includes six Eligible Green and Transition Business Activities, spanning across crucial technologies for the sector’s transition, such as: Direct Reduced Iron (DRI), Electric Arc Furnace (EAF), Carbon Capture Utilisation and Storage (CCUS), manufacture and storage of hydrogen, renewable energy etc. which are crucial activities for decarbonising the steel industry. This initiative illustrates how the SAT can guide sectors with high emissions intensities toward a low-carbon future.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-c5849c35",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "Green Esteel",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p14-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 14,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 14
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-bde2b7fe",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "Moving forward, as more corporates and banks align their sustainable financing frameworks with the SAT, we can expect a growing pipeline of deals that meet the SAT’s green and transition criteria, driving greater credibility and mitigating the risks of greenwashing across the region.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-a915deaa",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "Green or transition finance deals that referenced the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-af9be7b7",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "OUE Limited issues the first SAT-aligned green bond",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-e80aaaa2",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "OUE Limited",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-cd85b246",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "In October 2024, OUE Limited launched Singapore’s inaugural green bond in alignment with the SAT. The five-year bond’s proceeds are allocated for four green buildings certified under the Green Mark 2021 scheme.21 OUE Limited’s Green Finance Framework, supported by a Second Party Opinion from Sustainable Fitch, highlights the bond’s compliance with the SAT criteria. OCBC, HSBC, and CIMB were the Joint Lead Managers, Bookrunners and Green Finance Structuring banks to the issuer for the offering of the notes. This transaction is the first green bond to receive an independent external review confirming that the use-of-proceeds is fully aligned with the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-cd58d30c",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "Prosperity REIT receives Hong Kong’s First Green and Transition Loan from OCBC",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-42d8347a",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "Prosperity REIT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-38bc65e9",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "In 2024, OCBC extended Hong Kong’s first Green and Transition Loan in the real estate sector to Prosperity Real Estate Investment Trust (Prosperity REIT), using the SAT to define green and transition activities.22 The loan’s proceeds will be directed towards enhancing energy efficiency and decarbonising Prosperity REIT’s key properties over the next five years. This financing aligns with Hong Kong’s Climate Action Plan 2050, aiming to reduce carbon emissions from buildings, which account for over 60% of the city’s total emissions. OCBC has supported Prosperity REIT’s sustainability journey, helping them achieve 100% sustainable financing in 2022.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-7e495bd7",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "21 Sustainable Fitch: SPO Provided for OUE Limited’s Green Bond. Link. 22 OCBC Hong Kong and Prosperity REIT complete Hong Kong’s first Green and Transition Loan in real estate industry. Link.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p15-381e4b85",
+    "doc_id": "Application_of_SAT",
+    "page": 15,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 3 — A P P L I C A T I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 15
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-57b35bbd",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "4 — \u0007Retrospective assessments of local banks’ loan portfolio and asset managers’ funds alignment with the SAT",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-1f55e7e5",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "While past transactions and investments of banks and asset managers were not explicitly designed with the SAT in mind, mapping their alignment to the SAT gives an indication of the feasibility of aligning future transactions with the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-749644ea",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "Local banks and an asset manager have assessed that their existing lending portfolios and fund allocations entered into before the publication of the SAT already demonstrate some degree of compatibility with the SAT criteria. Going forward, financial institutions can push towards more financing solutions which are in alignment with the SAT to further their commitment in sustainable financing.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-61468732",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "(I) Local banks’ portfolio alignment",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-2d946809",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "While past transactions before the publication of the SAT had not considered the SAT definitions at the point of financing, a sizeable proportion of Singapore’s three local banks’ portfolios already adhere to the SAT thresholds. The majority of OCBC’s green financing portfolio meets the SAT thresholds. For DBS, more than half of its sustainable and green loan assets are broadly aligned with the SAT green criteria. Similarly, UOB has estimated that 35% to 45% of its sustainable financing portfolio are aligned with the SAT, covering sectors such as real estate, data centres, solar, and agri-commodities.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-a71ba758",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "A list of examples of past corporate transactions from DBS, OCBC, and UOB that are assessed to be in-principle aligned with the SAT on a retrospective basis is in the Annex.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-7da28751",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "(II) Asset managers’ funds alignment",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-ce932e84",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "criterion",
+    "text": "Asset managers can also use taxonomies such as the SAT to align their sustainability-related funds with credible thresholds and criteria, guiding investment eligibility and portfolio allocation. Amundi is one such example.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-a4480c22",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "Amundi As a responsible asset manager, Amundi has developed a transition investment framework based on its proprietary scoring methodology, the Paris Aligned Score (PAS), to evaluate the credibility of companies’ transition paths. This framework accounts for regional differences in transition pathways, utilising local taxonomies, such as the SAT, as complementary references where data is available.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-defa739d",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "To assess the practicality of the transition investment framework, Amundi has created a cross-asset investment strategy that includes both equity and fixed income assets, focusing on identifying companies in Asian emerging markets based on the progress of their transition paths.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-c5c61ee0",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "Amundi recognises three main challenges in transition investing: insufficient investment flows in hard-to-abate sectors, a lack of climate data and standardised disclosures in emerging markets, and inadequate benchmarks for decarbonisation. To address these challenges, Amundi employs the PAS to evaluate companies’ transition efforts and alignment with net-zero goals. The investment strategy prioritises financing companies with credible transition plans, particularly in high-emitting sectors (e.g. aluminium, cement, steel, and metals & mining), as well as low-emitting sectors with significant",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p16-f1f7ab73",
+    "doc_id": "Application_of_SAT",
+    "page": 16,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 4 — R E T R O S P E C T I V E A S S E S S M E N T S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 16
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-ea571fc5",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "carbon intensity, based on their transition plans and alignment with the Paris Agreement’s net-zero objectives. The strategy is designed taking into consideration regional contexts and sectoral criteria, and overlayed with an active engagement approach.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-62ab5176",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "Under the PAS, companies are classified as “Leaders”, “Aligning”, or “Inhibitors”. This broadly maps to the SAT traffic light categories. The preliminary portfolio alignment is as follows:",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-0188a7aa",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "i. \u0007Green (up to 10%): Leaders",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-12ad2ab9",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "ii. \u0007Amber (20-50%23): Aligning",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-c44ae0f2",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "iii. \u0007Ineligible (up to 5%): Inhibitors",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-ecfc8f25",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "iv. \u0007Out of Scope (up to 50%): Low-emitting sectors, sovereign entities, and supranational organisations",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-09e907eb",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "23 \u0007Dependent on the asset classes. These figures are preliminary estimates and may change based on data availability and further development of methodology and framework.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p17-f1f7ab73",
+    "doc_id": "Application_of_SAT",
+    "page": 17,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 4 — R E T R O S P E C T I V E A S S E S S M E N T S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 17
+    }
+  },
+  {
+    "id": "Application_of_SAT-p18-5b01215e",
+    "doc_id": "Application_of_SAT",
+    "page": 18,
+    "section_path": [],
+    "kind": "note",
+    "text": "5 — \u0007Conclusion",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 18
+    }
+  },
+  {
+    "id": "Application_of_SAT-p18-e98beaba",
+    "doc_id": "Application_of_SAT",
+    "page": 18,
+    "section_path": [],
+    "kind": "note",
+    "text": "S I N G A P O R E - A S I A T A X O N O M Y A N D I T S A P P L I C A T I O N F O R T H E F I N A N C I A L S E C T O R A N D C O R P O R A T E S",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 18
+    }
+  },
+  {
+    "id": "Application_of_SAT-p18-8307bc7b",
+    "doc_id": "Application_of_SAT",
+    "page": 18,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "In just over a year since its launch, the SAT has demonstrated its utility and practicality across a range of use cases by banks, asset managers and corporates. Financial products have been developed based on the thresholds and criteria of the SAT, sustainable finance frameworks across banks and corporates have been aligned with or make reference to the SAT criteria, and corporates’ decarbonisation plans have been guided by the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 18
+    }
+  },
+  {
+    "id": "Application_of_SAT-p18-8e774502",
+    "doc_id": "Application_of_SAT",
+    "page": 18,
+    "section_path": [],
+    "kind": "threshold",
+    "text": "As adoption grows, collaboration between FIs and the broader ecosystem will be crucial to enhance the taxonomy’s effectiveness. The Singapore Sustainable Finance Association (SSFA) is driving several industry-led initiatives to support the adoption and application of the SAT, including the publication of a SAT Transition Financing Handbook to guide the application of transition thresholds and a set of Frequently Asked Questions (FAQs) to address practical queries from taxonomy users. These efforts will help to promote a deeper understanding of taxonomy activities while enhancing transparency and consistency of green and transition finance, and further increase the use of the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 18
+    }
+  },
+  {
+    "id": "Application_of_SAT-p18-b3fe2770",
+    "doc_id": "Application_of_SAT",
+    "page": 18,
+    "section_path": [],
+    "kind": "note",
+    "text": "We encourage industry stakeholders to harness the benefits of the SAT by adopting and actively implementing the SAT, in order to collectively drive meaningful progress towards a sustainable future.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 18
+    }
+  },
+  {
+    "id": "Application_of_SAT-p18-1b2593d2",
+    "doc_id": "Application_of_SAT",
+    "page": 18,
+    "section_path": [],
+    "kind": "note",
+    "text": "S E C T I O N 5 — C O N C L U S I O N",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 18
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-9fc3b4b0",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Annex",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-42ae8daf",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Bangchak’s Transition Loan for Sustainable Aviation Fuel",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-d64b5249",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Boustead’s Green Loan for Green Mark- certified Warehouse",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-04a17949",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "GuocoLand Green Loan for Real Estate",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-895bbf90",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "This Annex includes examples of corporates’ transactions shared by OCBC before the SAT was launched in December 2023, as well as examples of corporates’ transactions shared by UOB and DBS, that are in-principle aligned with the SAT. These examples do not explicitly reference the SAT, as OCBC’s cases predate its launch, DBS has recently updated its sustainable finance framework to align with the SAT in March 2025, while UOB is still in the process of aligning its framework and has yet to formally reference the SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-d2f91243",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Corporates Details Financial Institutions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-3f51fa62",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "UOB has extended a THB6.5 billion loan to Bangchak for Thailand’s first Sustainable Aviation Fuel (SAF) plant, approved under its Transition Finance Framework in December 2024. As Thailand’s first Transition Finance facility for a hard-to-abate sector, the loan will fund the construction, development, and working capital for the SAF project. Leveraging Bangchak’s integrated value chain, the project will procure used cooking oil from its nationwide service stations and partner networks to produce SAF, which is expected to reduce GHG emissions by approximately 80,000 tons of CO2 equivalent compared to conventional jet fuel. The SAF output will be supplied to Bangchak as the primary trading entity, serving fuel suppliers, airlines, and oil traders.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-11b4581b",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "UOB",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-e75e6e79",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: Dec 2024",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-170ddde6",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Link: UOB extends Bangchak group THB 6.5 billion loan for Thailand’s first SAF plant",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-4375aa2e",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Recognised as a transition fuel, SAF is a key decarbonisation lever for the international aviation sector and is aligned with the Amber criteria under the Transportation sector in the SAT for air transport.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-11b4581b",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "UOB",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-ebe486b5",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "UOB supported Boustead with a S$156 million green loan for Singapore’s first industrial Green Mark Platinum Super Low Energy logistics warehouse under the Green Building Framework, announced on 17 October 2024. The completed property is expected to achieve 42.6% energy savings by reducing air-conditioning and lighting consumption. The warehouse will incorporate a climatic responsive facade to reduce heat gain, a high-efficiency air distribution system, a hybrid cooling system, and a solar power generation system to minimise energy consumption.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-438c5ad8",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: Oct 2024",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-92b9e772",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Link: Boustead Redevelopment First In Industrial Sector To Achieve Green Mark Platinum Super Low Energy And Five Badges; Secures Green Loan",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-9a176981",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "This is aligned with the green criteria under the Real Estate & Construction sector in the SAT for the construction of new buildings.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-c425f8eb",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "GuocoLand has secured an approximately S$1.2 billion Green Loan under its Green Finance Framework from DBS and OCBC, through GuocoLand Midtown Pte. Ltd. for the refinancing of Guoco Midtown, a mixed-use residential and commercial development at Tan Quee Lan Street. The financing was provided by DBS and OCBC, with both banks acting as the Mandated Lead Arranger and Green Loan Advisor.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-320307ef",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS and OCBC",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-1db6ccfb",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: Jan 2025",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-f237fd96",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Link: GuocoLand bags S$1.2 billion in green loans",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-85f544ca",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "Guoco Midtown meets high sustainability standards, incorporating enhanced indoor air quality, extensive greenery, water efficiency, and waste management measures. The development has also been awarded the Green Mark GoldPLUS rating by the Building and Construction Authority (BCA) for achieving over 55% in energy savings.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p19-945e16cc",
+    "doc_id": "Application_of_SAT",
+    "page": 19,
+    "section_path": [],
+    "kind": "note",
+    "text": "This aligns with the green criteria under SAT’s Real Estate & Construction sector.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 19
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-d2f91243",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Corporates Details Financial Institutions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-d9424b9a",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Hero Asia Investment’s Green Loan for Renewable Energy",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-8873ae02",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "OCBC supported Hero Asia Investment, a subsidiary of China Longyuan Power Group, China’s largest wind farm operator and part of the world’s largest power company by installed capacity, in structuring its Green Loan Framework. The framework, which received an SPO from S&P Global Ratings to be aligned with the GLP, guides loan proceeds to finance eligible renewable energy projects, including solar and wind power generation, reinforcing Hero Asia’s commitment to clean energy. Subsequently, OCBC extended an inaugural US$100 million green loan under the Green Loan Framework to finance renewable energy projects that meet the framework’s criteria. This is aligned with the green criteria under the Energy sector in the SAT for wind energy.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-720dd7fb",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Rexus Bioenergy’s Green Loan for Biomass Power Plant",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-ca6f9565",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS supported Rexus Bioenergy with a green loan for Singapore’s first circular biomass power plant with integrated carbon capture technologies. The green electricity generated from the facility will partially supply power to Google’s data center operations in Singapore. Rexus has secured a 10-year virtual Power Purchase Agreement (PPA) with PacificLight Energy and Google, ensuring long-term economic viability. The facility will also be certified under the International Renewable Energy Certificate (I-REC), ensuring compliance with international green energy standards.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-280936a7",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "This aligns with the green criteria under SAT’s Energy sector for bioenergy power.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-95b47881",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Singtel’s Green Loan for Green Mark- certified Data Centres",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-14999cc1",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS, OCBC, Standard Chartered and UOB are supporting Singtel with a S$535 million Green Loan for BCA Green Mark-certified data centres. The loan proceeds will refinance existing borrowings and support the operations of DC West and DC Kim Chuan, both of which have attained the highest Green Mark Platinum certification. Singtel, one of Singapore’s largest and most advanced data centre operators, also recently broke ground on DC Tuas, a 58MW hyper-connected green data centre that will further strengthen Singapore’s digital infrastructure.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-0d7e015f",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "This is aligned with the green criteria under the Real Estate & Construction sector in SAT.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-a2016630",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Terrenus Energy’s Green Loan for Renewable Energy Solutions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-9efe0737",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS is leading the advising and financing of about S$300 million in green loan to Terrenus Energy, a leading provider of renewable energy solutions, has successfully secured about S$300 million in green financing from a consortium of five banks led by DBS.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-7b9d16ae",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "The green loan will finance the installation of photovoltaic panels on some 1,200 public housing blocks and 57 government sites, as well as commercial and industrial facilities. It also includes a ground- mounted-cum-floating solar project for capacity of 24.5MW in Singapore, as well as the JTC Solar Roof Phase 3 project.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-4f27ee81",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Aligned with the green criteria in SAT’s Energy sector for solar energy, this represents one of the largest renewable energy deployments in Singapore to date and will accelerate Singapore’s green ambitions.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-5f06417f",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Yinson GreenTech’s Green Loan for Electric Vessel",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-bcaa067b",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "OCBC provided financing for Yinson GreenTech for the region’s first fully electric hydrofoil crew transfer vessel, the Hydroglyder, a sustainable alternative to fossil-fuel-powered boats. The Hydroglyder’s hydrofoil system lifts the hull above the water, significantly reducing drag and energy consumption. This innovative design results in up to 80% lower energy consumption and significantly lower operational costs compared to conventional vessels. Aligned with the green criteria under the Transportation sector in the SAT — vessels with zero direct tailpipe CO2 emissions, the Hydrogylder’s zero emission technology and energy-efficient design represent a key step towards advancing the maritime industry’s decarbonisation efforts.",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-448cf746",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "OCBC",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-366bbeb8",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: July 2023 (Green Loan Framework); Aug 2023 (Green Loan) Link: OCBC Hong Kong and Hero Asia Investment Sign a First US$100 Million Bilateral Green Loan",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-a92fc86c",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-c3d20f45",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: Nov 2024",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-db0cefb5",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Link: DBS green loan powers wider adoption of biofuels to enable a circular economy and help accelerate Singapore’s net- zero ambitions",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-3ad1191e",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS, OCBC, Standard Chartered and UOB",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-9f50d4a0",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: Dec 2023",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-1b088bf2",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Link: Singtel secures first green loan",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-a92fc86c",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "DBS",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-dba947ee",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Date: May 2024",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-9b72c189",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "Link: Terrenus Energy secures SGD 300m green loan facilitated by DBS",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  },
+  {
+    "id": "Application_of_SAT-p20-98bc959f",
+    "doc_id": "Application_of_SAT",
+    "page": 20,
+    "section_path": [],
+    "kind": "note",
+    "text": "OCBC Date: June 2023 Link: Yinson GreenTech Launches Singapore’s First Fully Electric Hydrofoil Vessel, the Hydroglyder",
+    "refs": {
+      "doc": "MAS SAT",
+      "page": 20
+    }
+  }
+]
