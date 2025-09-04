@@ -10,10 +10,6 @@ from dotenv import load_dotenv
 
 from collections import deque
 import uuid
-import logging
-from .bedrock_client import BedrockClient
-from .graph import evaluate_financial_action
-from langchain_community.vectorstores import FAISS
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
