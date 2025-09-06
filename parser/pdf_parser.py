@@ -104,7 +104,7 @@ def docs_to_md(parsed_docs: List[dict], out_dir_path: str) -> list[str]:
         # Use the original file name as the title
         lines = [f"# {Path(doc_id).stem}\n"] 
         for p in pages:
-            lines.append(f"## Page {p.get('page', 0)}")
+            lines.append(f"### Page {p.get('page', 0)}")
             lines.append((p.get("text") or "").rstrip())
             lines.append("")  # blank line between pages
 
@@ -121,8 +121,11 @@ def run(directory_path:str, out_directory_path: str):
     parsed_docs = parse_documents(directory_path)
     if parsed_docs:
         print(f"Parsed {len(parsed_docs)} pages from PDFs in {directory_path}.")
-        md_paths = docs_to_md(parsed_docs, out_directory_path)
-        print(f"Wrote {len(md_paths)} markdown files to {out_directory_path}.")
+        # md_paths = docs_to_md(parsed_docs, out_directory_path)
+        # print(f"Wrote {len(md_paths)} markdown files to {out_directory_path}.")
+        output_json_path = os.path.join(out_directory_path, "parsed_docs.json")
+        docs_to_json(parsed_docs, output_json_path)
+        print(f"Wrote parsed documents to {output_json_path}.")
     else:
         print("No documents were parsed.")
 
