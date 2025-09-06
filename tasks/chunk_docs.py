@@ -1,4 +1,4 @@
-import os, yaml, json, glob, re
+import os, yaml, json, glob, re, argparse
 from pathlib import Path
 
 HEADING_RE = re.compile(r"^##\s+(\d+(\.\d+)*)\s+(.+)$")
@@ -132,3 +132,30 @@ def run(pipeline_cfg: str):
 
     print(f"[chunk_docs] {len(md_files)} files → chunks={len(all_chunks)} -> {out_path}")
     return {"chunks_path": out_path, "files": md_files}
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--config", default="config.yml")
+    ap.add_argument("--ingest-first", action="store_true",
+                    help="Run PDF parsing (parser/pdf_parser.py) before chunking")
+    args = ap.parse_args()
+
+    cfg = yaml.safe_load(Path(args.config).read_text())
+    paths = cfg["paths"]
+
+    if args.ingest_first:
+        # Lazy import to avoid hard dep when you just want chunking
+        from parser.pdf_parser import docs_to_md
+        from parser.pdf_parser import parsing_instruction as PARSE_INSTR  # reuse your text
+        docs_to_md(
+            raw_dir=paths["raw_dir"],
+            parsed_dir=paths["parsed_dir"],
+            parsing_instructions=PARSE_INSTR,
+            result_type="text",
+            verbose=True,
+        )
+
+    run(args.config)
+
+if __name__ == "__main__":
+    main()
