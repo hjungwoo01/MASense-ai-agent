@@ -1,27 +1,27 @@
-from fastapi import FastAPI, Request, HTTPException
-from fastapi import UploadFile, File, Form
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Dict, List, Optional
-from typing import Any
-import json
 import os
-from dotenv import load_dotenv
-import logging
-from app.graph import evaluate_financial_action
-import pathlib
-import shutil
-from datetime import datetime
-import pdfplumber
-
-from collections import deque
+import json
 import uuid
+import shutil
+import hashlib
+import logging
+import pathlib
+import pdfplumber
+from datetime import datetime
+from decimal import Decimal
+from collections import deque
+from typing import Dict, List, Optional, Any
+from dotenv import load_dotenv
+from fastapi import FastAPI, Request, HTTPException, UploadFile, File, Form
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field, validator
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from app.graph import evaluate_financial_action
 
-logging.basicConfig(level=logging.INFO)
+# Remove duplicate logging configuration
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger(__name__)
 
 # Load environment variables
@@ -47,12 +47,31 @@ app.add_middleware(
 
 # Input Models
 class FinancialAction(BaseModel):
-    sector: str
-    activity: str
-    description: str
-    amount: float
-    currency: str = "SGD"
-    additional_context: Optional[Dict] = None
+    sector: str = Field(..., description="Business sector of the activity")
+    activity: str = Field(..., description="Specific activity being evaluated")
+    description: str = Field(..., min_length=10, description="Detailed description of the activity")
+    amount: float = Field(..., gt=0, description="Financial amount involved")
+    currency: str = Field(default="SGD", min_length=3, max_length=3)
+    additional_context: Optional[Dict] = Field(default=None)
+
+    @validator('sector')
+    def validate_sector(cls, v):
+        if not v.strip():
+            raise ValueError('Sector cannot be empty')
+        return v.strip()
+
+    @validator('amount')
+    def validate_amount(cls, v):
+        if v <= 0:
+            raise ValueError('Amount must be positive')
+        return float(Decimal(str(v)).quantize(Decimal('0.01')))
+
+class EvaluationResult(BaseModel):
+    status: str = Field(..., description="Status of the evaluation")
+    classification: Optional[str] = Field(None, description="Green, Amber, or Ineligible")
+    explanation: Optional[str] = Field(None, description="Detailed explanation")
+    required_documentation: List[str] = Field(default_factory=list)
+    confidence: float = Field(..., ge=0, le=1)
 
 class EvaluationResponse(BaseModel):
     action_id: str
@@ -92,42 +111,49 @@ async def get_sector_details(sector_name: str):
         raise HTTPException(status_code=404, detail="Sector not found")
     return ruleset[sector_name]
 
-@app.post("/evaluate")
+@app.post("/evaluate", response_model=EvaluationResult)
 async def evaluate_action(action: FinancialAction):
     """Evaluate a financial action using our workflow"""
+    logger.info(f"Received evaluation request for sector: {action.sector}, activity: {action.activity}")
+    
     try:
         # Convert Pydantic model to dict for workflow
         action_dict = action.model_dump()
+        logger.debug(f"Processing action: {action_dict}")
         
         # Run through our evaluation workflow
         result = evaluate_financial_action(action_dict)
-
-        # Debug print for retrieved clauses
+        
+        # Log retrieved clauses for debugging
         context = result.get("context", {})
         clauses = context.get("clauses", [])
-        print("\n[DEBUG] Retrieved Clauses:")
-        for i, clause in enumerate(clauses[:5]):  # show first 5
-            print(f"  {i+1}. {clause[:200]}...")  # truncate long text
+        if clauses:
+            logger.debug(f"Retrieved {len(clauses)} relevant clauses")
+            for i, clause in enumerate(clauses[:3]):
+                logger.debug(f"Clause {i+1}: {clause[:100]}...")
 
         if result.get("status") == "error":
-            raise HTTPException(
-                status_code=500,
-                detail=result.get("errors", ["Unknown error occurred"])
-            )
+            error_msg = result.get("errors", ["Unknown error occurred"])[0]
+            logger.error(f"Evaluation failed: {error_msg}")
+            raise HTTPException(status_code=500, detail=error_msg)
             
         # Extract evaluation results
         evaluation = result.get("evaluation", {})
-        return {
-            "status": "success",
-            "classification": evaluation.get("classification"),
-            "explanation": evaluation.get("explanation"),
-            "required_documentation": evaluation.get("required_documentation", []),
-            "confidence": 0.95
-        }
+        response = EvaluationResult(
+            status="success",
+            classification=evaluation.get("classification"),
+            explanation=evaluation.get("explanation"),
+            required_documentation=evaluation.get("required_documentation", []),
+            confidence=evaluation.get("confidence", 0.95)
+        )
+        
+        logger.info(f"Completed evaluation for {action.sector}/{action.activity} - Classification: {response.classification}")
+        return response
 
     except Exception as e:
-        logger.error(f"Evaluation failed: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_msg = f"Unexpected error during evaluation: {str(e)}"
+        logger.error(error_msg)
+        raise HTTPException(status_code=500, detail=error_msg)
 
 @app.post("/batch-evaluate")
 async def batch_evaluate(actions: List[FinancialAction]):
@@ -322,45 +348,38 @@ async def get_session_doc(session_id: str, doc_id: str):
 async def chat(payload: Dict[str, Any]):
     try:
         message = payload.get("message", "") or ""
-        amount = float(payload.get("amount", 0) or 0)
-        currency = payload.get("currency", "SGD")
         org = payload.get("company_profile") or {}
-        sid = payload.get("session_id")
-        doc_ids = payload.get("doc_ids") or []
-
-        action = {
-            "description": message,
-            "amount": amount,
-            "currency": currency,
-            "organization": org,
-            "documents": [],  # pass doc metadata into your graph if you want
-        }
-
-        if sid and sid in app.state.sessions and doc_ids:
-            by_id = {d["doc_id"]: d for d in app.state.sessions[sid]["docs"]}
-            action["documents"] = [by_id[i] for i in doc_ids if i in by_id]
-
-        result = evaluate_financial_action(action)
-        if result.get("status") == "error":
-            raise HTTPException(status_code=500, detail=result.get("errors", ["Unknown error occurred"]))
-
-        evaluation = result.get("evaluation", {})
-        response_text = (
-            f"**Classification**: {evaluation.get('classification', 'Unknown')}\n\n"
-            f"**Explanation**: {evaluation.get('explanation', 'No explanation available')}\n\n"
-            "**Required Documentation**:\n" +
-            ("\n".join([f"- {doc}" for doc in evaluation.get('required_documentation', [])]) or "- None")
+        
+        # Create FinancialAction from payload
+        action = FinancialAction(
+            sector=org.get("context", {}).get("sector", "Energy"),
+            activity=org.get("context", {}).get("activity", "Solar Panel Installation"),
+            description=message,
+            amount=float(org.get("context", {}).get("amount", 0) or 0),
+            currency=org.get("context", {}).get("currency", "SGD"),
+            additional_context=org
         )
-
-        if sid and sid in app.state.sessions:
-            app.state.sessions[sid]["chat"].append({"role": "user", "content": message})
-            app.state.sessions[sid]["chat"].append({"role": "assistant", "content": response_text})
+        
+        # Use the evaluate_action endpoint
+        result = await evaluate_action(action)
+        
+        # Format response for UI
+        response_text = (
+            f"**Classification**: {result.classification}\n\n"
+            f"**Explanation**: {result.explanation}\n\n"
+            "**Required Documentation:**\n" +
+            ("\n".join([f"- {doc}" for doc in result.required_documentation]) or "- None")
+        )
 
         return {
             "assistant": {"text": response_text},
-            "decision": {"label": evaluation.get("classification")},
-            "raw_evaluation": evaluation
+            "classification": result.classification,
+            "explanation": result.explanation,
+            "required_documentation": result.required_documentation,
+            "confidence": result.confidence,
+            "decision": {"label": result.classification}
         }
+
     except Exception as e:
         logger.error(f"Chat processing failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))

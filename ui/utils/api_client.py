@@ -1,9 +1,13 @@
 import os
 import requests
+import logging
 from typing import Dict, Any, Optional, List
 
 # API Endpoint
 API_BASE = os.getenv("ESG_API_BASE", "http://localhost:8000")
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # ---------- helper functions ----------
 def _post_json(path: str, payload: Dict[str, Any], timeout: int = 30) -> Optional[Dict[str, Any]]:
@@ -40,72 +44,109 @@ def upload_document(session_id: str, file_name: str, file_bytes: bytes, kind: st
     return resp
 
 def chat_message(session_id: str, message: str, company_profile: Dict[str, Any], doc_ids: List[str] = None) -> Dict[str, Any]:
-    # Create action from company profile
-    action = {
-        "sector": company_profile.get("context", {}).get("sector", ""),
-        "activity": company_profile.get("context", {}).get("activity", ""),
-        "description": message,
-        "amount": company_profile.get("context", {}).get("amount", 0),
-        "currency": "SGD",
-        "additional_context": company_profile
-    }
-    
-    # Create financial action payload
-    payload = {
-        "sector": company_profile.get("context", {}).get("sector", ""),
-        "activity": company_profile.get("context", {}).get("activity", ""),
-        "description": message,
-        "amount": float(company_profile.get("context", {}).get("amount", 0)),
-        "currency": "SGD",
-        "additional_context": {
-            "doc_ids": doc_ids or [],
-            "session_id": session_id,
-            **company_profile
+    """Send a chat message and get response"""
+    try:
+        # Create FinancialAction payload
+        context = company_profile.get("context", {})
+        payload = {
+            "sector": context.get("sector", "Energy"),
+            "activity": context.get("activity", "Solar Panel Installation"),
+            "description": message,
+            "amount": float(context.get("amount", 500000)),  # Default amount if not provided
+            "currency": "SGD",
+            "additional_context": {
+                "session_id": session_id,
+                "doc_ids": doc_ids or [],
+                "company_profile": company_profile
+            }
         }
-    }
-    
-    resp = _post_json("/evaluate", payload)
-    
-    if resp is None:
+        
+        logger.info(f"Sending evaluation request: {payload}")
+        resp = _post_json("/evaluate", payload)
+        
+        if resp is None:
+            return {
+                "status": "error",
+                "assistant": {"text": "Service is currently unavailable. Please try again later."},
+                "classification": "Unknown",
+                "explanation": None,
+                "required_documentation": [],
+                "confidence": 0,
+                "decision": {"label": "Unknown"}
+            }
+
+        # Extract nested data from response
+        artifacts = resp.get("artifacts", {})
+        evaluation = artifacts.get("evaluation", {})
+        explanation = artifacts.get("explanation", {})
+        
+        # Extract specific fields
+        classification = evaluation.get("classification", "Unknown")
+        matched_criteria = evaluation.get("matched_criteria", [])
+        required_docs = evaluation.get("required_documentation", [])
+        explanation_text = explanation.get("summary", "No explanation available")
+        confidence = explanation.get("confidence", 0)
+        
+        # Build formatted response
+        emoji = {"Green": "🟢", "Amber": "🟡", "Ineligible": "🔴"}.get(classification, "ℹ️")
+        
+        response_sections = [
+            f"{emoji} **Classification**: {classification}",
+            "",
+            "**Matched Criteria:**"
+        ]
+        
+        # Add numbered matched criteria
+        for i, criterion in enumerate(matched_criteria, 1):
+            response_sections.append(f"{i}. {criterion}")
+        
+        # Add detailed explanation
+        if explanation_text:
+            response_sections.extend([
+                "",
+                "**Detailed Explanation:**",
+                explanation_text
+            ])
+        
+        # Add required documentation
+        if required_docs:
+            response_sections.extend([
+                "",
+                "**Required Documentation:**",
+                *[f"- {doc}" for doc in required_docs]
+            ])
+        
+        # Add confidence score
+        if confidence:
+            response_sections.extend([
+                "",
+                f"**Confidence Score**: {confidence*100:.0f}%"
+            ])
+        
         return {
             "status": "success",
-            "classification": "Unknown",
-            "explanation": "No evaluation available (service unavailable)",
-            "required_documentation": [],
-            "confidence": 0,
-            "decision": {"label": "Unknown"},
-            "assistant": {
-                "text": "Service is currently unavailable. Please try again later."
+            "assistant": {"text": "\n".join(response_sections)},
+            "classification": classification,
+            "explanation": explanation_text,
+            "required_documentation": required_docs,
+            "confidence": confidence,
+            "decision": {
+                "label": classification,
+                "matched_criteria": matched_criteria
             }
         }
 
-    # Transform the API response into a nicely formatted message
-    classification = resp.get("classification", "Unknown")
-    emoji = {"Green": "🟢", "Amber": "🟡", "Ineligible": "🔴"}.get(classification, "ℹ️")
-    
-    formatted_text = [
-        f"{emoji} **Classification:** {classification}\n",
-        f"**Explanation:**\n{resp.get('explanation', 'No explanation available')}\n"
-    ]
-    
-    if resp.get("required_documentation"):
-        formatted_text.append("**Required Documentation:**")
-        for doc in resp.get("required_documentation", []):
-            formatted_text.append(f"- {doc}")
-            
-    if resp.get("confidence") is not None:
-        formatted_text.append(f"\n**Confidence:** {resp.get('confidence')*100:.0f}%")
-    
-    # Return the structured response
-    return {
-        "status": resp.get("status", "error"),
-        "classification": classification,
-        "explanation": resp.get("explanation"),
-        "required_documentation": resp.get("required_documentation", []),
-        "confidence": resp.get("confidence", 0),
-        "decision": {"label": classification},
-        "assistant": {"text": "\n".join(formatted_text)}
-    }
+    except Exception as e:
+        logger.error(f"Error in chat_message: {str(e)}")
+        return {
+            "status": "error",
+            "assistant": {"text": f"Error processing request: {str(e)}"},
+            "classification": "Unknown",
+            "explanation": None,
+            "required_documentation": [],
+            "confidence": 0,
+            "decision": {"label": "Unknown"}
+        }
 
 def answer_missing(session_id: str, answers: Dict[str, Any]) -> Dict[str, Any]:
     resp = _post_json("/chat/answer", {
