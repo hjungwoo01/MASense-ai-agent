@@ -22,7 +22,7 @@ with st.sidebar:
 
     if not state.session_id:
         if st.button("Start new session", use_container_width=True):
-            resp = start_session()
+            resp = start_session() 
             state.session_id = resp["session_id"]
             state.docs = []
             state.doc_hashes = set()
@@ -145,15 +145,34 @@ else:
 
         with st.chat_message("assistant"):
             with st.spinner("Thinking…"):
+                # Ensure backend always gets required org_type + industry
+                organization = {
+                    "org_type": state.company_profile.get("org_type") or "Enterprise",
+                    "industry": state.company_profile.get("industry") or state.company_profile.get("sector") or "General"
+                }
+
+                # Wrap everything so backend has both organization and context
+                company_profile_payload = {
+                    "organization": organization,
+                    "context": state.company_profile
+                }
                 # utils.api_client.chat_message may or may not accept doc_ids.
                 # Try with doc_ids first; if TypeError, call without.
                 try:
-                    resp = chat_message(state.session_id, user_input, state.company_profile, doc_ids=doc_ids)
+                    resp = chat_message(state.session_id, user_input, company_profile_payload, doc_ids=doc_ids)
                 except TypeError:
-                    resp = chat_message(state.session_id, user_input, state.company_profile)
+                    resp = chat_message(state.session_id, user_input, company_profile_payload)
 
+                # Get the formatted assistant response
                 assistant_text = resp.get("assistant",{}).get("text","(no response)")
+                
+                # Display the response in a structured format
                 st.markdown(assistant_text)
+                
+                # If we have a confidence score, show it as a progress bar
+                confidence = resp.get("confidence")
+                if confidence is not None:
+                    st.progress(confidence, text=f"Confidence: {confidence*100:.0f}%")
 
                 # pending follow-ups
                 state.pending_missing_fields = resp.get("missing_fields", []) or []

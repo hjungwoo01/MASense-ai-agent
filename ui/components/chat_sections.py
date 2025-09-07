@@ -66,3 +66,16 @@ def _coerce(val: str):
         if val.strip().lower() in ("true", "false"):
             return val.strip().lower() == "true"
         return val
+
+def handle_chat(session_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Forward payload to FastAPI backend.
+    Ensures organization is included to avoid validation errors.
+    """
+    company_profile = payload.get("organization", {})
+    message = payload.get("description", "")
+
+    # Call FastAPI via api_client
+    resp = api_client.chat_message(session_id, message, company_profile)
+
+    return resp
