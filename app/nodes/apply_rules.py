@@ -50,31 +50,44 @@ def apply_rules(state: Dict[str, Any]) -> Dict[str, Any]:
         # Parse the AI response content as JSON
         try:
             content = json.loads(response.get("content", "{}"))
+            
+            # Validate required fields
+            required_fields = ["classification", "explanation", "required_documentation"]
+            if not all(field in content for field in required_fields):
+                logger.error(f"Missing required fields in response: {content}")
+                return {
+                    **state,
+                    "status": "error",
+                    "errors": ["Invalid response format - missing required fields"]
+                }
+            
+            # Update state with evaluation results
+            evaluation = {
+                "classification": content["classification"],
+                "explanation": content["explanation"],
+                "required_documentation": content["required_documentation"]
+            }
+
+            logger.info(f"Evaluation complete - Classification: {evaluation['classification']}")
+            
+            return {
+                **state,
+                "status": "evaluated",
+                "evaluation": evaluation,
+                "context": {
+                    **context,
+                    "evaluation_details": content
+                }
+            }
+            
         except json.JSONDecodeError as e:
             logger.error(f"Failed to parse AI response as JSON: {response.get('content')}")
             return {
                 **state,
-                "status": "error", 
-                "errors": ["Invalid response format from AI"]
+                "status": "error",
+                "errors": ["Failed to parse response as JSON"]
             }
-
-        # Update evaluation with parsed content
-        evaluation = {
-            "classification": content.get("classification", ""),
-            "explanation": content.get("explanation", ""),
-            "required_documentation": content.get("required_documentation", [])
-        }
-
-        return {
-            **state,
-            "status": "success",
-            "evaluation": evaluation,
-            "context": {
-                **context,
-                "evaluation_details": content
-            }
-        }
-
+            
     except Exception as e:
         logger.error(f"Error in apply_rules: {str(e)}")
         return {

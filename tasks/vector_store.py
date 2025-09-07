@@ -14,8 +14,19 @@ def load_chunks_from_json(json_path: str) -> List[Dict]:
     """
     Loads chunked data from a JSON file.
     """
-    if not os.path.exists(json_path):
-        print(f"File {json_path} does not exist.")
+    abs_path = os.path.abspath(json_path)
+    print(f"Looking for JSON file at: {abs_path}")
+    
+    if not os.path.exists(abs_path):
+        print(f"File {abs_path} does not exist.")
+        print(f"Current working directory: {os.getcwd()}")
+        print("Available files in data/parsed/:")
+        try:
+            files = os.listdir("data/parsed")
+            for f in files:
+                print(f"  - {f}")
+        except Exception as e:
+            print(f"Error listing directory: {e}")
         return []
     
     with open(json_path, "r", encoding = "utf-8") as f:
@@ -28,24 +39,43 @@ def build_vector_store():
     """
     Builds a Chroma vector store from chunked data.
     """
+    # Load chunked data
+    chunks = load_chunks_from_json(JSON_PATH)
+    if not chunks:
+        return
     
-    #1. Load the chunked data from the JSON file
-def load_chunks_from_json(json_path: str) -> List[Dict]:
-    """
-    Loads chunked data from a JSON file.
-    """
-    if not os.path.exists(json_path):
-        print(f"Error: JSON file not found at {json_path}. Please run the chunker script first.")
-        return []
+    # Convert chunks to documents
+    documents = []
+    for chunk in chunks:
+        doc = Document(
+            page_content=chunk['text'],
+            metadata={
+                'source': chunk.get('source', 'unknown'),
+                'page': chunk.get('page', 0),
+                'section': chunk.get('section', 'unknown')
+            }
+        )
+        documents.append(doc)
     
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    print(f"Created {len(documents)} documents for vectorization")
     
-    print(f"Loaded {len(data)} pages from JSON file.")
-    return data
-
-
-def build_vector_store():
+    # Initialize embeddings
+    embeddings = HuggingFaceEmbeddings(
+        model_name="all-MiniLM-L6-v2",
+        model_kwargs={'device': 'cpu'},
+        encode_kwargs={'normalize_embeddings': True}
+    )
+    
+    # Create and persist the vector store
+    vectorstore = Chroma.from_documents(
+        documents=documents,
+        embedding=embeddings,
+        persist_directory=CHROMA_DB_PATH
+    )
+    
+    # Persist the vector store
+    vectorstore.persist()
+    print(f"Vector store built and persisted at {CHROMA_DB_PATH}")
     """
     Builds a ChromaDB vector store from a list of chunked documents.
     """

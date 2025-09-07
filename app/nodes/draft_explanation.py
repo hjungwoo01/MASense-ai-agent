@@ -1,5 +1,6 @@
 from typing import Dict, Any, List
 import logging
+import json
 from ..bedrock_client import BedrockClient
 
 logger = logging.getLogger(__name__)
@@ -12,10 +13,15 @@ def draft_explanation(state: Dict[str, Any]) -> Dict[str, Any]:
         if state.get("status") == "error":
             return state
             
+        # Get context from state
         context = state.get("context", {})
         evaluation = state.get("evaluation", {})
         
+        logger.info(f"Starting draft_explanation with evaluation: {evaluation}")
+        logger.info(f"Context: {context}")
+        
         if not evaluation:
+            logger.error("No evaluation data found in state")
             return {
                 **state,
                 "status": "error",
@@ -36,16 +42,27 @@ def draft_explanation(state: Dict[str, Any]) -> Dict[str, Any]:
             
         client = BedrockClient()
         
-        # Create explanation request
-        explanation_request = {
-            "description": action.get("description", ""),
-            "classification": evaluation.get("classification", ""),
-            "organization": org,
-            "rules": rules
-        }
+        # Create explanation prompt
+        explanation_prompt = f"""
+        Generate a detailed explanation for this financial action evaluation:
+
+        Action Details:
+        - Description: {action.get('description', '')}
+        - Classification: {evaluation.get('classification', '')}
+        - Sector: {action.get('sector', '')}
+        - Amount: {action.get('amount')} {action.get('currency', 'SGD')}
+
+        You must return a valid JSON object with this structure:
+        {{
+            "text": "Detailed explanation of the classification and reasoning",
+            "key_points": ["Point 1", "Point 2", ...],
+            "recommendations": ["Recommendation 1", "Recommendation 2", ...]
+        }}
+        Only return the JSON, no other text.
+        """
         
         # Get detailed explanation from Bedrock
-        result = client.analyze_financial_action(explanation_request)
+        result = client.generate_response(explanation_prompt)
         
         if result.get("status") == "error":
             return {
@@ -53,11 +70,13 @@ def draft_explanation(state: Dict[str, Any]) -> Dict[str, Any]:
                 "status": "error",
                 "errors": [result.get("error", "Failed to generate explanation")]
             }
-            
+        
+        # Parse the response content
+        explanation_content = json.loads(result.get("content", "{}"))
         return {
             **state,
             "status": "success",
-            "explanation": result.get("content", {})
+            "explanation": explanation_content
         }
         
     except Exception as e:
@@ -68,29 +87,4 @@ def draft_explanation(state: Dict[str, Any]) -> Dict[str, Any]:
             "status": "error",
             "errors": [error_msg]
         }
-    prompt = """   
-    Action: {action['activity']} in {action['sector']} sector
-    Amount: {action['amount']} {action.get('currency', 'SGD')}
-    Classification: {evaluation['classification']}
-    
-    Key Points:
-    1. Matched Criteria: {evaluation['matched_criteria']}
-    2. Suggestions: {evaluation['suggestions']}
-    
-    Please provide:
-    1. Clear rationale for the classification
-    2. Impact analysis
-    3. Specific improvement recommendations
-    4. Compliance pathway
-    """
-    
-    detailed_explanation = bedrock.generate_response(prompt)
-    
-    return {
-        **state,
-        "status": "explanation_drafted",
-        "explanation": {
-            "detailed": detailed_explanation,
-            "summary": evaluation["explanation"]
-        }
-    }
+

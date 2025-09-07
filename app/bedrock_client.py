@@ -43,6 +43,13 @@ class BedrockClient:
             )
 
             response_body = json.loads(response['body'].read().decode())
+            
+            if 'content' not in response_body or not response_body['content']:
+                return {
+                    "status": "error",
+                    "error": "Invalid response from Bedrock"
+                }
+                
             return {
                 "content": response_body['content'][0]['text'],
                 "status": "success"
