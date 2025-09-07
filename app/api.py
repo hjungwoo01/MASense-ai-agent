@@ -7,11 +7,15 @@ from typing import Any
 import json
 import os
 from dotenv import load_dotenv
+import logging
 
 from collections import deque
 import uuid
 
 # Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
