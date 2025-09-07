@@ -1,97 +1,53 @@
 from typing import Dict, Any
-from app.bedrock_client import BedrockClient
-import logging
 import json
+import logging
 
 logger = logging.getLogger(__name__)
 
+RULESET_PATH = "mas_ruleset.json"
+
 def apply_rules(state: Dict[str, Any]) -> Dict[str, Any]:
-    """Apply MAS rules to evaluate the financial action"""
+    """
+    Apply MAS taxonomy rules to the financial action.
+    """
     try:
-        # Get context from state
-        context = state.get("context", {})
-        action = context.get("action", {})
-        clauses = context.get("clauses", [])
-        
-        if not action or not clauses:
-            return {
-                **state,
-                "status": "error",
-                "errors": ["Missing required action or clauses"]
-            }
+        action = state["context"]["action"]
+        clauses = state["context"].get("clauses", [])
+        sector = action.get("sector")
 
-        # Use Bedrock to analyze against clauses
-        client = BedrockClient()
-        analysis_prompt = f"""
-        Analyze this financial action against the MAS sustainability framework clauses:
-
-        Action: {action.get('description')}
-        Amount: {action.get('amount')} {action.get('currency')}
-        
-        Relevant Framework Clauses:
-        {json.dumps(clauses, indent=2)}
-
-        You must return a valid JSON object with exactly these fields:
-        {{
-            "classification": "Green" or "Amber" or "Ineligible",
-            "explanation": "Detailed reasoning based on the clauses",
-            "required_documentation": ["doc1", "doc2", ...]
-        }}
-        Only return the JSON, no other text."""
-
-        response = client.generate_response(analysis_prompt)
-        if response.get("status") == "error":
-            return {
-                **state,
-                "status": "error",
-                "errors": [f"Analysis failed: {response.get('error')}"]
-            }
-
-        # Parse the AI response content as JSON
+        # Load MAS ruleset
         try:
-            content = json.loads(response.get("content", "{}"))
-            
-            # Validate required fields
-            required_fields = ["classification", "explanation", "required_documentation"]
-            if not all(field in content for field in required_fields):
-                logger.error(f"Missing required fields in response: {content}")
-                return {
-                    **state,
-                    "status": "error",
-                    "errors": ["Invalid response format - missing required fields"]
-                }
-            
-            # Update state with evaluation results
-            evaluation = {
-                "classification": content["classification"],
-                "explanation": content["explanation"],
-                "required_documentation": content["required_documentation"]
-            }
+            with open(RULESET_PATH, "r") as f:
+                ruleset = json.load(f)
+        except FileNotFoundError:
+            return {**state, "status": "error", "errors": ["MAS ruleset not found"]}
 
-            logger.info(f"Evaluation complete - Classification: {evaluation['classification']}")
-            
-            return {
-                **state,
-                "status": "evaluated",
-                "evaluation": evaluation,
-                "context": {
-                    **context,
-                    "evaluation_details": content
-                }
-            }
-            
-        except json.JSONDecodeError as e:
-            logger.error(f"Failed to parse AI response as JSON: {response.get('content')}")
-            return {
-                **state,
-                "status": "error",
-                "errors": ["Failed to parse response as JSON"]
-            }
-            
-    except Exception as e:
-        logger.error(f"Error in apply_rules: {str(e)}")
+        sector_rules = ruleset.get(sector, {})
+        matched = []
+
+        # Match clauses to sector rules
+        for rule in sector_rules.get("criteria", []):
+            if any(keyword.lower() in action["description"].lower()
+                   for keyword in rule.get("keywords", [])):
+                matched.append(rule)
+
+        if matched:
+            classification = "Green"
+            docs = [m.get("required_docs", "Supporting evidence") for m in matched]
+        else:
+            classification = "Amber"
+            docs = ["Additional information required"]
+
         return {
             **state,
-            "status": "error",
-            "errors": [f"Rule application failed: {str(e)}"]
+            "status": "success",
+            "evaluation": {
+                "classification": classification,
+                "matched_criteria": matched,
+                "required_documentation": docs
+            }
         }
+
+    except Exception as e:
+        logger.exception("Error in apply_rules")
+        return {**state, "status": "error", "errors": [str(e)]}

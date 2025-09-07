@@ -96,51 +96,37 @@ async def get_sector_details(sector_name: str):
 async def evaluate_action(action: FinancialAction):
     """Evaluate a financial action using our workflow"""
     try:
-        logger.info(
-            f"Starting evaluation request | "
-            f"Sector: {action.sector} | "
-            f"Activity: {action.activity} | "
-            f"Amount: {action.currency} {action.amount:,.2f} | "
-            f"Additional Context: {bool(action.additional_context)}"
-        )
         # Convert Pydantic model to dict for workflow
         action_dict = action.model_dump()
         
         # Run through our evaluation workflow
         result = evaluate_financial_action(action_dict)
-        
+
+        # Debug print for retrieved clauses
+        context = result.get("context", {})
+        clauses = context.get("clauses", [])
+        print("\n[DEBUG] Retrieved Clauses:")
+        for i, clause in enumerate(clauses[:5]):  # show first 5
+            print(f"  {i+1}. {clause[:200]}...")  # truncate long text
+
         if result.get("status") == "error":
-            logger.error(f"Evaluation failed with error: {result.get('errors')}")
             raise HTTPException(
                 status_code=500,
                 detail=result.get("errors", ["Unknown error occurred"])
             )
             
-        # Extract evaluation results from the final state
-        logger.info(f"Final state from workflow: {result}")
-        
+        # Extract evaluation results
         evaluation = result.get("evaluation", {})
-        explanation = evaluation.get("explanation", "")  # Get explanation directly from evaluation
-        
-        response = {
+        return {
             "status": "success",
             "classification": evaluation.get("classification"),
-            "explanation": explanation,
+            "explanation": evaluation.get("explanation"),
             "required_documentation": evaluation.get("required_documentation", []),
-            "confidence": 0.95  # TODO: Implement confidence scoring
+            "confidence": 0.95
         }
-        
-        logger.info(
-            f"Evaluation completed | "
-            f"Sector: {action.sector} | "
-            f"Classification: {response['classification']} | "
-            f"Confidence: {response['confidence']}"
-        )
-        
-        return response
 
     except Exception as e:
-        logger.error(f"Evaluation failed with unexpected error: {str(e)}")
+        logger.error(f"Evaluation failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/batch-evaluate")
