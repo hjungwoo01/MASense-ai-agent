@@ -1,4 +1,6 @@
 import streamlit as st
+import hashlib
+
 from utils.session_state import init_state
 from utils.api_client import start_session, upload_document, chat_message, answer_missing
 from components.chat_sections import intro_block, sidebar_docs
@@ -13,24 +15,58 @@ all_sectors = sectors(RULES)
 # ---------- sidebar: upload docs & session ----------
 with st.sidebar:
     st.title("Compliance Assistant")
+
+    # ensure required keys exist
+    if "docs" not in state: state.docs = []
+    if "doc_hashes" not in state: state.doc_hashes = set()
+
     if not state.session_id:
         if st.button("Start new session", use_container_width=True):
             resp = start_session()
             state.session_id = resp["session_id"]
+            state.docs = []
+            state.doc_hashes = set()
             st.rerun()
 
-    uploaded = st.file_uploader("Upload PDF(s) to analyze", type=["pdf"], accept_multiple_files=True)
-    if uploaded and state.session_id:
-        for file in uploaded:
-            with st.spinner(f"Uploading {file.name}..."):
-                resp = upload_document(state.session_id, file.name, file.read(), kind="sustainability_report")
-                state.docs.append({"doc_id": resp.get("doc_id","doc-mock"), "name": file.name})
-        st.success("Uploaded successfully.")
+    uploaded = st.file_uploader(
+        "Upload PDF(s) to analyze",
+        type=["pdf"],
+        accept_multiple_files=True,
+        key="uploader",
+        help="Files are uploaded once per session. New chats will reuse them."
+    )
+
+    if uploaded:
+        if not state.session_id:
+            st.warning("Click **Start new session** first.")
+        else:
+            new_count = 0
+            for uf in uploaded:
+                data = uf.getvalue()
+                sha = hashlib.sha256(data).hexdigest()
+                if sha in state.doc_hashes:
+                    # already uploaded this exact content; skip
+                    continue
+                with st.spinner(f"Uploading {uf.name}…"):
+                    resp = upload_document(state.session_id, uf.name, data, kind="sustainability_report")
+                state.doc_hashes.add(sha)
+                state.docs.append({
+                    "doc_id": resp.get("doc_id", "doc-mock"),
+                    "name": uf.name
+                })
+                new_count += 1
+            if new_count:
+                st.success(f"Uploaded {new_count} new file(s).")
+            else:
+                st.info("No new files detected (duplicates skipped).")
+
     sidebar_docs(state.docs)
 
     if st.button("Reset session", use_container_width=True):
-        for key in ["session_id","chat_history","docs","intro_dismissed","company_profile","pending_missing_fields"]:
-            if key in state: del st.session_state[key]
+        # clear everything including file uploader widget state
+        for key in ["session_id","chat_history","docs","doc_hashes","intro_dismissed","company_profile","pending_missing_fields","_prefill","uploader"]:
+            if key in st.session_state:
+                del st.session_state[key]
         st.rerun()
 
 # ---------- main area ----------
@@ -70,9 +106,9 @@ if not state.intro_dismissed:
 
 # Chat area
 if not state.session_id:
-    st.info("Click `  Let’s Begin  ` to get started, or use the `  Start new session  ` button on the left sidebar")
+    st.info("Click **Let’s Begin** to get started, or use **Start new session** on the left.")
 else:
-    # Initial suggested prompts
+    # Suggested prompts
     with st.container(border=True):
         st.write("**Try one of these to start:**")
         cols = st.columns(3)
@@ -82,10 +118,10 @@ else:
             "Evaluate if our gas plant retrofit with 90% CCS could be Green or Transition."
         ]
         for i, s in enumerate(suggestions):
-            if cols[i].button(s, use_container_width=True):
+            if cols[i].button(s, use_container_width=True, key=f"suggest_{i}"):
                 st.session_state._prefill = s
 
-    # Conversation
+    # Conversation history
     for msg in state.chat_history:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
@@ -99,38 +135,44 @@ else:
         del st.session_state._prefill
 
     if user_input:
-        # append user message to UI immediately
+        # show user msg immediately
         state.chat_history.append({"role":"user","content":user_input})
         with st.chat_message("user"):
             st.markdown(user_input)
 
+        # prepare doc_ids so backend can use already-uploaded docs
+        doc_ids = [d["doc_id"] for d in state.docs]
+
         with st.chat_message("assistant"):
             with st.spinner("Thinking…"):
-                resp = chat_message(state.session_id, user_input, state.company_profile)
+                # utils.api_client.chat_message may or may not accept doc_ids.
+                # Try with doc_ids first; if TypeError, call without.
+                try:
+                    resp = chat_message(state.session_id, user_input, state.company_profile, doc_ids=doc_ids)
+                except TypeError:
+                    resp = chat_message(state.session_id, user_input, state.company_profile)
 
-                # assistant text
                 assistant_text = resp.get("assistant",{}).get("text","(no response)")
                 st.markdown(assistant_text)
 
-                # potential follow-ups (missing fields)
+                # pending follow-ups
                 state.pending_missing_fields = resp.get("missing_fields", []) or []
 
-                # if there’s a classification decision, show a compact chip
+                # compact decision chip
                 decision = resp.get("decision")
                 if decision and "label" in decision:
                     label = decision["label"]
                     chip = {"Green":"🟢","Amber":"🟠","Ineligible":"🔴","Red":"🔴"}.get(label,"ℹ️")
-                    st.markdown(f"**Decision:** {chip} **{label}**")
+                    st.markdown(f"**Decision:** {chip} **#{label}**" if label in ("Green","Amber","Ineligible","Red") else f"**Decision:** {chip} {label}")
                     if decision.get("rule_path"):
                         with st.expander("Why (rule path)"):
                             for step in decision["rule_path"]:
                                 status = "✅" if step.get("passed") else "❌"
                                 st.write(f"- {status} {step.get('clause_id','N/A')} — `{step.get('test','')}`")
 
-        # push assistant text into history
         state.chat_history.append({"role":"assistant","content":assistant_text})
 
-    # If missing fields are requested, render a quick follow-up form inline
+    # Follow-up form for missing fields
     if state.pending_missing_fields:
         st.info("More information required to refine the classification:")
         answers = {}

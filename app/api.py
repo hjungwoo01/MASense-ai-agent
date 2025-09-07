@@ -8,6 +8,11 @@ import json
 import os
 from dotenv import load_dotenv
 import logging
+from app.graph import evaluate_financial_action
+import pathlib
+import shutil
+from datetime import datetime
+import pdfplumber
 
 from collections import deque
 import uuid
@@ -21,6 +26,9 @@ logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
+
+UPLOAD_ROOT = os.getenv("MAS_UPLOAD_DIR", os.path.join(os.getcwd(), "data", "uploads"))
+pathlib.Path(UPLOAD_ROOT).mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(
     title="MASense AI Agent API",
@@ -207,95 +215,148 @@ async def session_upload(
     kind: str = Form("sustainability_report"),
     file: UploadFile = File(...),
 ):
-    """Accept a PDF upload and register it to the session (demo: metadata only)."""
     if session_id not in app.state.sessions:
         raise HTTPException(status_code=404, detail="session not found")
 
-    # For demo we don't persist content; store metadata only.
+    # Read all bytes to compute a stable hash
+    data = await file.read()
+    sha256 = hashlib.sha256(data).hexdigest()
+
+    # Check if already uploaded in this session
+    for d in app.state.sessions[session_id]["docs"]:
+        if d.get("sha256") == sha256:
+            return {
+                "doc_id": d["doc_id"],
+                "name": d["name"],
+                "kind": d["kind"],
+                "size_kb": d.get("size_kb"),
+                "page_count": d.get("page_count"),
+                "preview": d.get("preview"),
+                "deduplicated": True,
+            }
+
+    # Persist new file
+    sess_dir = os.path.join(UPLOAD_ROOT, session_id)
+    os.makedirs(sess_dir, exist_ok=True)
+    ts = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+    safe_name = f"{ts}__{file.filename}".replace("/", "_")
+    dest_path = os.path.join(sess_dir, safe_name)
+    with open(dest_path, "wb") as out:
+        out.write(data)
+
+    size_kb = round(os.path.getsize(dest_path) / 1024, 2)
+    page_count, preview = None, None
+    if (file.content_type or "").lower() == "application/pdf" or dest_path.lower().endswith(".pdf"):
+        try:
+            with pdfplumber.open(dest_path) as pdf:
+                page_count = len(pdf.pages)
+                if page_count:
+                    t = pdf.pages[0].extract_text() or ""
+                    preview = (t[:800] + "…") if len(t) > 800 else t
+        except Exception as e:
+            logger.warning(f"PDF preview extraction failed: {e}")
+
     doc_id = f"doc-{uuid.uuid4()}"
-    app.state.sessions[session_id]["docs"].append({
+    record = {
         "doc_id": doc_id,
         "name": file.filename,
         "kind": kind,
         "mime": file.content_type,
-    })
-    return {"doc_id": doc_id, "name": file.filename, "kind": kind}
+        "path": dest_path,
+        "sha256": sha256,
+        "size_kb": size_kb,
+        "page_count": page_count,
+        "preview": preview,
+        "uploaded_at": ts,
+    }
+    app.state.sessions[session_id]["docs"].append(record)
+
+    return {
+        "doc_id": doc_id,
+        "name": file.filename,
+        "kind": kind,
+        "size_kb": size_kb,
+        "page_count": page_count,
+        "preview": preview,
+        "deduplicated": False,
+    }
+    
+@app.get("/session/docs")
+async def list_session_docs(session_id: str):
+    """List docs for a session (without heavy fields)."""
+    if session_id not in app.state.sessions:
+        raise HTTPException(status_code=404, detail="session not found")
+    docs = app.state.sessions[session_id]["docs"]
+    # trim path/preview for listing
+    return [
+        {
+            "doc_id": d["doc_id"],
+            "name": d["name"],
+            "kind": d.get("kind"),
+            "mime": d.get("mime"),
+            "size_kb": d.get("size_kb"),
+            "page_count": d.get("page_count"),
+            "uploaded_at": d.get("uploaded_at"),
+        }
+        for d in docs
+    ]
+
+@app.get("/session/doc/{doc_id}")
+async def get_session_doc(session_id: str, doc_id: str):
+    """Fetch full doc metadata (incl. preview)."""
+    if session_id not in app.state.sessions:
+        raise HTTPException(status_code=404, detail="session not found")
+    for d in app.state.sessions[session_id]["docs"]:
+        if d["doc_id"] == doc_id:
+            return d
+    raise HTTPException(status_code=404, detail="doc not found")
 
 @app.post("/chat")
 async def chat(payload: Dict[str, Any]):
-    """Process chat messages using our evaluation workflow"""
     try:
-        # Extract action details from chat payload
+        message = payload.get("message", "") or ""
+        amount = float(payload.get("amount", 0) or 0)
+        currency = payload.get("currency", "SGD")
+        org = payload.get("company_profile") or {}
+        sid = payload.get("session_id")
+        doc_ids = payload.get("doc_ids") or []
+
         action = {
-            "description": payload.get("message", ""),
-            "amount": float(payload.get("amount", 0)),
-            "currency": payload.get("currency", "SGD"),
-            "organization": payload.get("company_profile", {})
+            "description": message,
+            "amount": amount,
+            "currency": currency,
+            "organization": org,
+            "documents": [],  # pass doc metadata into your graph if you want
         }
-        
-        # Run evaluation
+
+        if sid and sid in app.state.sessions and doc_ids:
+            by_id = {d["doc_id"]: d for d in app.state.sessions[sid]["docs"]}
+            action["documents"] = [by_id[i] for i in doc_ids if i in by_id]
+
         result = evaluate_financial_action(action)
-        
         if result.get("status") == "error":
-            raise HTTPException(
-                status_code=500,
-                detail=result.get("errors", ["Unknown error occurred"])
-            )
+            raise HTTPException(status_code=500, detail=result.get("errors", ["Unknown error occurred"]))
 
         evaluation = result.get("evaluation", {})
-        
-        # Format response for chat
         response_text = (
             f"**Classification**: {evaluation.get('classification', 'Unknown')}\n\n"
             f"**Explanation**: {evaluation.get('explanation', 'No explanation available')}\n\n"
-            "**Required Documentation**:\n" + 
-            "\n".join([f"- {doc}" for doc in evaluation.get("required_documentation", [])])
+            "**Required Documentation**:\n" +
+            ("\n".join([f"- {doc}" for doc in evaluation.get('required_documentation', [])]) or "- None")
         )
+
+        if sid and sid in app.state.sessions:
+            app.state.sessions[sid]["chat"].append({"role": "user", "content": message})
+            app.state.sessions[sid]["chat"].append({"role": "assistant", "content": response_text})
 
         return {
             "assistant": {"text": response_text},
             "decision": {"label": evaluation.get("classification")},
             "raw_evaluation": evaluation
         }
-
     except Exception as e:
         logger.error(f"Chat processing failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
-
-    action_model = FinancialAction(
-        sector=sector,
-        activity=activity,
-        description=description,
-        amount=amount,
-        currency=currency,
-        additional_context=additional_context,
-    )
-
-    eval_res = await evaluate_action(action_model)
-    # normalize to dict
-    if hasattr(eval_res, "dict"):
-        eval_dict = eval_res.dict()
-    else:
-        eval_dict = dict(eval_res)
-
-    assistant_text = (
-        f"**{eval_dict.get('classification')}** "
-        f"(confidence {eval_dict.get('confidence_score')})\n\n"
-        f"{eval_dict.get('explanation')}\n\n"
-        "Suggestions: " + ", ".join(eval_dict.get("suggestions", []))
-    )
-
-    # Append to session chat history
-    app.state.sessions[sid]["chat"].append({"role": "user", "content": message})
-    app.state.sessions[sid]["chat"].append({"role": "assistant", "content": assistant_text})
-
-    return {
-        "assistant": {"text": assistant_text},
-        "decision": {"label": eval_dict.get("classification")},
-        "matched_criteria": eval_dict.get("matched_criteria", []),
-        "missing_fields": [],
-        "raw": eval_dict,
-    }
 
 @app.post("/chat/answer")
 async def chat_answer(payload: Dict[str, Any]):
