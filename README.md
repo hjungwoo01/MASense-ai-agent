@@ -7,7 +7,9 @@ It combines:
 - **FastAPI** backend (evaluation pipeline + RAG retrieval + classification logic)  
 - **Streamlit** frontend (interactive compliance assistant UI)  
 - **Chroma / FAISS** vector store for document retrieval  
-- **Airflow DAGs** for orchestration of workflows  
+- **LangGraph Agent** (agentic orchestration of RAG pipeline, applying taxonomy rules)  
+- **Airflow DAGs** for orchestration of ingestion workflows  
+
 
 ## Getting Started
 
@@ -35,82 +37,69 @@ cd ui
 streamlit run app.py --server.port 8501
 ```
 
-### Workflow
----
-![Workflow Diagram](assets/workflow_diagram.png)
 
-The MASense-ai-agent workflow is designed to evaluate financial activities against the MAS Sustainability Taxonomy principles. Here's how the system operates:
+## Workflow
+The MASense-ai-agent workflow evaluates financial activities against MAS Sustainability Taxonomy principles. It uses a **Retrieval-Augmented Generation (RAG)** pipeline orchestrated by a **LangGraph Agent**.  
 
-1. **Document Upload**:
-   - Users upload sustainability reports or other relevant documents (PDF format).
-   - The system parses the documents into text chunks and builds a vector index using Chroma or FAISS.
+### **System Flow**
+1. **User Input**  
+   - Users upload sustainability reports (PDF) or enter plain-English activity descriptions.  
+   - Files are stored locally (or in S3 at scale) for ingestion.  
 
-2. **Question Input**:
-   - Users input questions or descriptions of financial activities in plain English.
-   - Example: `"We plan to finance a 50MW solar PV project in Singapore. Classify and explain"`
+2. **Batch Ingestion (Airflow)**  
+   - `Storage → Airflow → Parse & Chunk → Embed → Vector DB`  
+   - Sustainability reports are parsed into text chunks, embedded, and stored in **Chroma / FAISS** vector DB.  
+   - This creates a reusable knowledge base for RAG queries.  
 
-3. **RAG Retrieval**:
-   - The system retrieves relevant clauses and rules from the MAS Sustainability Taxonomy using a Retrieval-Augmented Generation (RAG) approach.
-   - This ensures that the evaluation is based on the most relevant taxonomy principles.
+3. **Online Query (RAG Loop)**  
+   - `Streamlit → FastAPI → LangGraph Agent ↔ Vector DB → LangGraph Agent → FastAPI → Streamlit`  
+   - The **LangGraph Agent** retrieves taxonomy-relevant clauses from the Vector DB.  
+   - Retrieved context is injected into the evaluation pipeline to ground responses.  
 
-4. **Evaluation Pipeline**:
-   - The FastAPI backend processes the input using LangGraph orchestration.
-   - Nodes in the pipeline handle tasks such as applying rules, drafting explanations, and generating classifications.
+4. **Evaluation Pipeline (Agentic Orchestration)**  
+   - Nodes in the LangGraph Agent handle:  
+     - Clause retrieval  
+     - Rule application (taxonomy alignment)  
+     - Drafting classification & explanations  
+     - Generating final structured outputs  
 
-5. **Classification and Explanation**:
-   - The system classifies the activity as `Green`, `Amber`, or `Ineligible`.
-   - It provides a detailed explanation, including matched criteria and required documentation.
+5. **Classification and Explanation**  
+   - Activities are classified (`Green`, `Amber`, `Ineligible`) per MAS Taxonomy.  
+   - Detailed explanations include matched criteria, missing documentation, and rationale.  
 
-6. **Results Display**:
-   - The Streamlit frontend displays the classification, explanation, and any missing documentation.
-   - Users can interact with the assistant to refine their queries or upload additional documents.
+6. **Results Display**  
+   - Streamlit frontend shows classification, explanation, and follow-ups.  
+   - Users can refine queries interactively or upload more documents.  
 
----
 
-### Orchestration with Airflow
+## Orchestration with Airflow
 
-MASense-ai-agent uses **Airflow DAGs** to orchestrate complex workflows for document processing and evaluation. The DAGs ensure that tasks are executed in the correct order and handle dependencies between steps.
+MASense-ai-agent uses **Airflow DAGs** to orchestrate ingestion and ensure reproducibility.
 
-#### `mas_pipeline.py`
+### `mas_pipeline.py` DAG
+1. **Document Parsing**: Extracts text from uploaded PDFs into JSON chunks.  
+2. **Vector Indexing**: Builds/updates embeddings in Chroma / FAISS.  
+3. **Clause Retrieval**: Prepares relevant taxonomy references.  
+4. **Rule Application**: Applies MAS Taxonomy rules.  
+5. **Explanation Drafting**: Generates detailed classification explanations.  
+6. **Result Storage**: Saves results for traceability.  
 
-1. **Document Parsing**:
-   - Extracts text from uploaded PDFs and stores parsed chunks in the vector store.
+> **Note:** Airflow handles **offline ingestion**. The **LangGraph Agent** handles **real-time query-time RAG**.
 
-2. **Vector Indexing**:
-   - Builds or updates the vector index using Chroma or FAISS.
 
-3. **Clause Retrieval**:
-   - Retrieves relevant clauses from the MAS Sustainability Taxonomy based on the user's query.
-
-4. **Rule Application**:
-   - Applies taxonomy rules to classify the activity and identify matched criteria.
-
-5. **Explanation Drafting**:
-   - Generates a detailed explanation of the classification, including required documentation.
-
-6. **Result Storage**:
-   - Stores the classification, explanation, and artifacts for future reference.
-
-The DAGs are designed to be modular, allowing easy integration with additional workflows or external systems.
-
----
-
-### Project Structure
+## Project Structure
 ```bash
 MASense-ai-agent/
 ├── app/                     # FastAPI backend
 │   ├── api.py               # API endpoints (chat, evaluate, session)
 │   ├── graph.py             # LangGraph orchestration pipeline
 │   ├── bedrock_client.py    # AWS Bedrock client wrapper
-│   ├── nodes/               # Individual workflow nodes
+│   ├── nodes/               # Workflow nodes
 │   │   ├── apply_rules.py
 │   │   ├── retrieve_clauses.py
 │   │   ├── draft_explanation.py
 │   │   └── ...
 │   └── utils/               # Shared utilities
-│       ├── api_client.py
-│       ├── rules_catalog.py
-│       └── session_state.py
 │
 ├── data/                    # Uploaded & processed documents
 │   ├── uploads/             # Session-based PDF uploads
@@ -129,28 +118,39 @@ MASense-ai-agent/
 │   └── utils/               # Shared UI utils
 │
 ├── configs/                 # Config files (rulesets, taxonomy JSONs)
-│
 ├── requirements.txt
 ├── setup.py
 ├── README.md
 └── .gitignore
 ```
 
----
 
-### Demo Usage
-1. Upload a Sustainability Report (PDF)
-    * Example: `Application_of_SAT.pdf`
-    * THe system extracts text and builds a vector index (Chroma / FAISS).
-2. Ask Questions in Plain English
-    Example prompts:
-        * `"Scan the uploaded report and summarise our taxonomy-relevant activities."`
-        * `"We plan to finance a 50MW solar PV project in Singapore. Classify and explain"`
-        * `"Evaluate if our gas plant retrofit with 90% CCS could be Green or Translation."`
-3. View Results
-    * Classification (`Green / Amber / Ineligible`)
-    * Explanation (with taxonomy clause references)
-    * Required documentation still missing
+## Demo Usage
 
-Example Output:
+1. **Upload Sustainability Report (PDF)**  
+   Example: `Application_of_SAT.pdf`  
+   - Parsed and indexed into Vector DB.  
+
+2. **Ask Questions in Plain English**  
+   Example prompts:  
+   - `"Scan the uploaded report and summarise taxonomy-relevant activities."`  
+   - `"We plan to finance a 50MW solar PV project in Singapore. Classify and explain."`  
+   - `"Evaluate if our gas plant retrofit with 90% CCS could be Green or Transitional."`  
+
+3. **View Results**  
+   - **Classification**: `Green / Amber / Ineligible`  
+   - **Explanation**: Clause references, matched criteria, missing documentation.  
+
+
+
+## Key Concepts
+
+- **LangGraph Agent**: Orchestrates workflow, retrieves taxonomy rules, applies logic, drafts explanations.  
+- **RAG**: Combines user input with retrieved clauses from the Vector DB to generate grounded, compliant outputs.  
+- **Vector DB (Chroma / FAISS)**: Stores document embeddings for efficient similarity search.  
+- **Airflow DAGs**: Automates ingestion of sustainability reports into the vector DB.  
+
+
+
+## Example Output
 ![Output Screenshot](assets/example_output.png)
