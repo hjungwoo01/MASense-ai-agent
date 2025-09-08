@@ -210,3 +210,18 @@ __marimo__/
 tests/.
 
 .python-version
+
+# temporary files
+*.tmp
+*.swp
+
+# Uploaded and processed documents
+data/uploads/
+data/parsed/
+data/chroma/
+
+# Streamlit cache
+.ui_streamlit/
+
+# Ignore assets
+assets/
