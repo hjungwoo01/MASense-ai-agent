@@ -19,8 +19,6 @@ def ask_user(state: Dict[str, Any]) -> Dict[str, Any]:
             "errors": ["No evaluation to process"]
         }
         
-    # TODO: Add user interaction through UI
-    # For now, we'll just continue without user interaction
     logger.info("Proceeding without user interaction")
     return {
         **state,
