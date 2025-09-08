@@ -20,7 +20,6 @@ def make_id(doc_id, page, text):
     return f"{doc_id}-p{page}-{h}"
 
 def pdf_to_markdown(pdf_path: Path) -> list[dict]:
-    # minimal placeholder extractor; swap for pdfplumber/pymupdf as needed
     import pdfplumber
     md = []
     with pdfplumber.open(pdf_path) as pdf:
@@ -30,11 +29,9 @@ def pdf_to_markdown(pdf_path: Path) -> list[dict]:
     return md
 
 def detect_section_lines(text: str) -> list[str]:
-    # loose heuristic: capture Heading-like lines
     lines = [l.strip() for l in text.splitlines() if l.strip()]
     return lines
 
-# need to refine such that we include more essential keywords that differentiate sections
 def classify_kind(line: str) -> str:
     l = line.lower()
     if any(k in l for k in ["must", "shall", "required", "eligibility"]): return "criterion"
@@ -52,7 +49,6 @@ def parse_pdf_to_clauses(pdf_path: str, doc_id: str, taxonomy_name="MAS SAT") ->
         lines = detect_section_lines(pg["text"])
         for line in lines:
             kind = classify_kind(line)
-            # crude: treat ALL lines as candidate clauses; refine later by heading detection
             cid = make_id(doc_id, pg["page"], line[:160])
             clause = Clause(
                 id=cid, doc_id=doc_id, page=pg["page"],

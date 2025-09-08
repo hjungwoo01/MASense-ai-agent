@@ -45,7 +45,6 @@ def run(pipeline_cfg: str):
     offline_only = cfg.get("ingest", {}).get("offline_only", True)
     seed_dir = cfg.get("ingest", {}).get("seed_dir", "configs/seed_docs")
 
-    # 1) Acquire PDFs (copy or download)
     pdf_paths = []
     if offline_only:
         if os.path.isdir(seed_dir):
@@ -70,7 +69,6 @@ def run(pipeline_cfg: str):
             if filename.lower().endswith(".pdf"):
                 pdf_paths.append(dst)
 
-    # 2) Convert PDFs → markdown into parsed_out
     converted = 0
     for pdf in pdf_paths:
         name = os.path.splitext(os.path.basename(pdf))[0] + ".md"

@@ -4,13 +4,11 @@ import requests
 import logging
 from typing import Dict, Any, Optional, List
 
-# API Endpoint
 API_BASE = os.getenv("ESG_API_BASE", "http://localhost:8000")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# ---------- helper functions ----------
 def _post_json(path: str, payload: Dict[str, Any], timeout: int = 30) -> Optional[Dict[str, Any]]:
     try:
         r = requests.post(f"{API_BASE}{path}", json=payload, timeout=timeout)
@@ -29,7 +27,6 @@ def _post_file(path: str, files, data: Dict[str, Any]) -> Optional[Dict[str, Any
         print(f"[api_client] POST file {path} failed: {e}")
         return None
 
-# ---------- main API functions ----------
 def start_session() -> Dict[str, Any]:
     resp = _post_json("/session/start", {})
     if resp is None:

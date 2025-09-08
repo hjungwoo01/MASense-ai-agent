@@ -19,10 +19,8 @@ def extract_inputs(state: Dict[str, Any]) -> Dict[str, Any]:
     try:
         action_data = state["action"]
         
-        # Validate basic required fields
         required_fields = ['description', 'amount']
         
-        # Check required fields
         missing_fields = [field for field in required_fields if field not in action_data]
         if missing_fields:
             return {
@@ -30,8 +28,7 @@ def extract_inputs(state: Dict[str, Any]) -> Dict[str, Any]:
                 "status": "error",
                 "errors": [f"Missing required fields: {', '.join(missing_fields)}"]
             }
-            
-        # Validate organization data
+        
         org_data = action_data.get('organization', {})
         try:
             org_context = OrganizationContext(**org_data)
@@ -41,8 +38,7 @@ def extract_inputs(state: Dict[str, Any]) -> Dict[str, Any]:
                 "status": "error",
                 "errors": [f"Invalid organization data: {str(e)}"]
             }
-            
-        # Update context with validated data
+        
         return {
             **state,
             "status": "success",
@@ -71,19 +67,15 @@ def extract_inputs(state: Dict[str, Any]) -> Dict[str, Any]:
             "artifacts": {}
         }
     
-    # Extract organization context if provided
     org_context = action_data.get('organization', {
         'org_type': 'Unspecified',
         'industry': 'General',
         'country': 'Singapore'
     })
     
-    # Use Bedrock to analyze the description and auto-categorize if sector/activity not provided
     if 'sector' not in action_data or 'activity' not in action_data:
-        # This would be implemented in retrieve_clauses.py
         action_data['needs_categorization'] = True
     
-    # Normalize any provided sector name
     if 'sector' in action_data:
         action_data['sector'] = action_data['sector'].lower().replace(' ', '_')
     

@@ -16,7 +16,6 @@ def chunk_by_section(json_path: str) -> List[str]:
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Initialise the recursive text splitter
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size = 1000,
         chunk_overlap = 200,

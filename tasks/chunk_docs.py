@@ -13,7 +13,6 @@ def _iter_md_files(preferred_dir: str, fallback_dir: str):
     return sorted(glob.glob(os.path.join(fallback_dir, "*.md")))
 
 def _estimate_tokens(text: str) -> int:
-    # heuristic: ~1 token ≈ 0.75 words for English regulatory text
     words = len(text.split())
     return int(words / 0.75) if words else 0
 
@@ -62,12 +61,9 @@ def _chunk_markdown_doc(path: str, max_tokens: int, overlap_tokens: int):
             buf_tokens = _estimate_tokens(line)
             continue
 
-        # Would adding this line exceed budget?
         line_tokens = _estimate_tokens(line)
         if buf_tokens + line_tokens > max_tokens:
-            # flush current chunk
             _flush_chunk(buf, doc_meta, out, max_tokens)
-            # start new with overlap (take tail that fits overlap_tokens)
             if out:
                 tail = out[-1]["text"].split()
                 if overlap_tokens > 0 and len(tail) > overlap_tokens:
@@ -82,10 +78,8 @@ def _chunk_markdown_doc(path: str, max_tokens: int, overlap_tokens: int):
         buf.append(line)
         buf_tokens += line_tokens
 
-    # flush trailing buffer
     _flush_chunk(buf, doc_meta, out, max_tokens)
 
-    # post-pass: ensure every chunk has a clause_id if present in its text
     for ch in out:
         if "clause_id" not in ch["meta"]:
             m = CLAUSE_ID_RE.search(ch["text"])
@@ -104,7 +98,6 @@ def run(pipeline_cfg: str):
     chunks_dir = paths["chunks_dir"]
     _ensure_dir(chunks_dir)
 
-    # find most recent dated folders
     parsed_dates = sorted(glob.glob(os.path.join(parsed_root, "*")))
     raw_dates = sorted(glob.glob(os.path.join(raw_root, "*")))
     if not parsed_dates and not raw_dates:
@@ -112,7 +105,6 @@ def run(pipeline_cfg: str):
     parsed_latest = parsed_dates[-1] if parsed_dates else ""
     raw_latest = raw_dates[-1] if raw_dates else ""
 
-    # read markdown files (prefer parsed)
     md_files = _iter_md_files(parsed_latest, raw_latest)
     if not md_files:
         raise RuntimeError("No markdown files found in parsed/ or raw/.")
@@ -144,9 +136,8 @@ def main():
     paths = cfg["paths"]
 
     if args.ingest_first:
-        # Lazy import to avoid hard dep when you just want chunking
         from parser.pdf_parser import docs_to_md
-        from parser.pdf_parser import parsing_instruction as PARSE_INSTR  # reuse your text
+        from parser.pdf_parser import parsing_instruction as PARSE_INSTR
         docs_to_md(
             raw_dir=paths["raw_dir"],
             parsed_dir=paths["parsed_dir"],

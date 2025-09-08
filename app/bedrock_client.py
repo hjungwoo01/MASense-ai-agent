@@ -5,10 +5,8 @@ from typing import Dict, Any, Optional
 import os
 from dotenv import load_dotenv
 
-# Load .env file (for local development)
 load_dotenv()
 
-# Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -95,7 +93,7 @@ class BedrockClient:
             response = self.generate_response(prompt)
             return {
                 "status": "success",
-                "content": response  # Will be parsed as JSON later
+                "content": response
             }
 
         except Exception as e:

@@ -17,14 +17,12 @@ from pydantic import BaseModel, Field, validator
 
 from app.graph import evaluate_financial_action
 
-# Remove duplicate logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# Load environment variables
 load_dotenv()
 
 UPLOAD_ROOT = os.getenv("MAS_UPLOAD_DIR", os.path.join(os.getcwd(), "data", "uploads"))
@@ -36,7 +34,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Allows all origins
@@ -45,7 +42,6 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Input Models
 class FinancialAction(BaseModel):
     sector: str = Field(..., description="Business sector of the activity")
     activity: str = Field(..., description="Specific activity being evaluated")
@@ -81,7 +77,6 @@ class EvaluationResponse(BaseModel):
     confidence_score: float
     explanation: str
 
-# Load MAS ruleset
 def load_mas_ruleset():
     try:
         with open("mas_ruleset.json", "r") as f:
@@ -92,7 +87,6 @@ def load_mas_ruleset():
 if not hasattr(app.state, "sessions"):
     app.state.sessions = {}  # session_id -> {"docs": list[dict], "chat": deque}
 
-# API Routes
 @app.get("/")
 async def root():
     return {"message": "Welcome to MASense AI Agent API"}
@@ -151,14 +145,11 @@ async def evaluate_with_context(
 ):
     """Evaluate action with additional context from RAG"""
     try:
-        # If context query provided, search RAG
         if context_query:
             try:
-                # Load FAISS index
                 vectorstore = FAISS.load_local("faiss_index")
                 docs = vectorstore.similarity_search(context_query)
                 
-                # Add RAG context to action
                 action_dict = action.model_dump()
                 action_dict["rag_context"] = [
                     {
@@ -172,7 +163,6 @@ async def evaluate_with_context(
         else:
             action_dict = action.model_dump()
 
-        # Run evaluation workflow
         result = evaluate_financial_action(action_dict)
         
         if result.get("status") == "error":
@@ -194,7 +184,6 @@ async def evaluate_with_context(
         logger.error(f"Evaluation with context failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# Health check endpoint
 @app.get("/health")
 async def health_check():
     """Check API and Bedrock client health"""
@@ -231,11 +220,9 @@ async def session_upload(
     if session_id not in app.state.sessions:
         raise HTTPException(status_code=404, detail="session not found")
 
-    # Read all bytes to compute a stable hash
     data = await file.read()
     sha256 = hashlib.sha256(data).hexdigest()
 
-    # Check if already uploaded in this session
     for d in app.state.sessions[session_id]["docs"]:
         if d.get("sha256") == sha256:
             return {
@@ -248,7 +235,6 @@ async def session_upload(
                 "deduplicated": True,
             }
 
-    # Persist new file
     sess_dir = os.path.join(UPLOAD_ROOT, session_id)
     os.makedirs(sess_dir, exist_ok=True)
     ts = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
@@ -300,7 +286,6 @@ async def list_session_docs(session_id: str):
     if session_id not in app.state.sessions:
         raise HTTPException(status_code=404, detail="session not found")
     docs = app.state.sessions[session_id]["docs"]
-    # trim path/preview for listing
     return [
         {
             "doc_id": d["doc_id"],

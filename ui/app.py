@@ -16,7 +16,6 @@ all_sectors = sectors(RULES)
 with st.sidebar:
     st.title("Compliance Assistant")
 
-    # ensure required keys exist
     if "docs" not in state: state.docs = []
     if "doc_hashes" not in state: state.doc_hashes = set()
 
@@ -45,7 +44,6 @@ with st.sidebar:
                 data = uf.getvalue()
                 sha = hashlib.sha256(data).hexdigest()
                 if sha in state.doc_hashes:
-                    # already uploaded this exact content; skip
                     continue
                 with st.spinner(f"Uploading {uf.name}…"):
                     resp = upload_document(state.session_id, uf.name, data, kind="sustainability_report")
@@ -63,7 +61,6 @@ with st.sidebar:
     sidebar_docs(state.docs)
 
     if st.button("Reset session", use_container_width=True):
-        # clear everything including file uploader widget state
         for key in ["session_id","chat_history","docs","doc_hashes","intro_dismissed","company_profile","pending_missing_fields","_prefill","uploader"]:
             if key in st.session_state:
                 del st.session_state[key]
@@ -104,11 +101,9 @@ if not state.intro_dismissed:
             state.session_id = resp["session_id"]
         st.rerun()
 
-# Chat area
 if not state.session_id:
     st.info("Click **Let’s Begin** to get started, or use **Start new session** on the left.")
 else:
-    # Suggested prompts
     with st.container(border=True):
         st.write("**Try one of these to start:**")
         cols = st.columns(3)
@@ -121,7 +116,6 @@ else:
             if cols[i].button(s, use_container_width=True, key=f"suggest_{i}"):
                 st.session_state._prefill = s
 
-    # Conversation history
     for msg in state.chat_history:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
@@ -135,49 +129,38 @@ else:
         del st.session_state._prefill
 
     if user_input:
-        # show user msg immediately
         state.chat_history.append({"role":"user","content":user_input})
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        # prepare doc_ids so backend can use already-uploaded docs
         doc_ids = [d["doc_id"] for d in state.docs]
 
         with st.chat_message("assistant"):
             with st.spinner("Thinking…"):
-                # Ensure backend always gets required org_type + industry
                 organization = {
                     "org_type": state.company_profile.get("org_type") or "Enterprise",
                     "industry": state.company_profile.get("industry") or state.company_profile.get("sector") or "General"
                 }
 
-                # Wrap everything so backend has both organization and context
                 company_profile_payload = {
                     "organization": organization,
                     "context": state.company_profile
                 }
-                # utils.api_client.chat_message may or may not accept doc_ids.
-                # Try with doc_ids first; if TypeError, call without.
                 try:
                     resp = chat_message(state.session_id, user_input, company_profile_payload, doc_ids=doc_ids)
                 except TypeError:
                     resp = chat_message(state.session_id, user_input, company_profile_payload)
 
-                # Get the formatted assistant response
                 assistant_text = resp.get("assistant",{}).get("text","(no response)")
                 
-                # Display the response in a structured format
                 st.markdown(assistant_text)
                 
-                # If we have a confidence score, show it as a progress bar
                 confidence = resp.get("confidence")
                 if confidence is not None:
                     st.progress(confidence, text=f"Confidence: {confidence*100:.0f}%")
 
-                # pending follow-ups
                 state.pending_missing_fields = resp.get("missing_fields", []) or []
 
-                # compact decision chip
                 decision = resp.get("decision")
                 if decision and "label" in decision:
                     label = decision["label"]
@@ -191,7 +174,6 @@ else:
 
         state.chat_history.append({"role":"assistant","content":assistant_text})
 
-    # Follow-up form for missing fields
     if state.pending_missing_fields:
         st.info("More information required to refine the classification:")
         answers = {}

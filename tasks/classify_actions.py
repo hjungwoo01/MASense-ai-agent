@@ -32,7 +32,6 @@ def run(pipeline_cfg: str):
     sess = _post_json("/session/start", {}) or {"session_id": "sess-mock-batch"}
     session_id = sess["session_id"]
 
-    # let backend know which docs to use
     doc_ids = []
 
     count = 0
@@ -50,12 +49,11 @@ def run(pipeline_cfg: str):
                     "size": action.get("size"),
                 },
                 "doc_ids": doc_ids,
-                "chat_history": [],  # stateless batch
+                "chat_history": [],
                 "client_meta": {"origin": "airflow-classify_actions"},
             }
             resp = _post_json("/chat", payload)
             if resp is None:
-                # Fallback mock if backend is unavailable
                 resp = {
                     "assistant": {"text": "Mock classification (backend unavailable)."},
                     "decision": {
