@@ -222,6 +222,3 @@ data/chroma/
 
 # Streamlit cache
 .ui_streamlit/
-
-# Ignore assets
-assets/
