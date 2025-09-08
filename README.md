@@ -1,6 +1,6 @@
 # MASense-ai-agent
 
-Agentic AI system leveraging **MAS Singapore-Asia Taxonomy**, MAS APIs, and AWS Bedrock**  
+Agentic AI system leveraging **MAS Singapore-Asia Taxonomy**, MAS APIs, and **AWS Bedrock**  
 to assess financial activity compliance with sustainability taxonomy.  
 
 It combines:
