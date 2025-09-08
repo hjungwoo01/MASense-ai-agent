@@ -1,4 +1,5 @@
 import os
+import uuid
 import requests
 import logging
 from typing import Dict, Any, Optional, List
@@ -43,110 +44,64 @@ def upload_document(session_id: str, file_name: str, file_bytes: bytes, kind: st
         return {"doc_id": f"doc-mock-{len(file_bytes)}", "name": file_name}
     return resp
 
-def chat_message(session_id: str, message: str, company_profile: Dict[str, Any], doc_ids: List[str] = None) -> Dict[str, Any]:
-    """Send a chat message and get response"""
-    try:
-        # Create FinancialAction payload
-        context = company_profile.get("context", {})
-        payload = {
-            "sector": context.get("sector", "Energy"),
-            "activity": context.get("activity", "Solar Panel Installation"),
-            "description": message,
-            "amount": float(context.get("amount", 500000)),  # Default amount if not provided
-            "currency": "SGD",
-            "additional_context": {
-                "session_id": session_id,
-                "doc_ids": doc_ids or [],
-                "company_profile": company_profile
-            }
-        }
+def chat_message(session_id: str, message: str, company_profile: Dict[str, Any], doc_ids: Optional[List[str]] = None) -> Dict[str, Any]:
+    """
+    Send a chat message to the FastAPI /chat endpoint.
+    """
+    
+    if "context" not in company_profile or not isinstance(company_profile["context"], dict):
+        flat = dict(company_profile or {})
+        ctx_keys = ("sector", "activity", "amount", "currency", "jurisdiction", "size")
+        context = {k: flat[k] for k in ctx_keys if k in flat and flat[k] is not None}
         
-        logger.info(f"Sending evaluation request: {payload}")
-        resp = _post_json("/evaluate", payload)
-        
-        if resp is None:
-            return {
-                "status": "error",
-                "assistant": {"text": "Service is currently unavailable. Please try again later."},
-                "classification": "Unknown",
-                "explanation": None,
-                "required_documentation": [],
-                "confidence": 0,
-                "decision": {"label": "Unknown"}
-            }
+        org_payload = {k: v for k, v in flat.items() if k not in context}
+        org_payload["context"] = context
+    else:
+        org_payload = company_profile
 
-        # Extract nested data from response
-        artifacts = resp.get("artifacts", {})
-        evaluation = artifacts.get("evaluation", {})
-        explanation = artifacts.get("explanation", {})
-        
-        # Extract specific fields
-        classification = evaluation.get("classification", "Unknown")
-        matched_criteria = evaluation.get("matched_criteria", [])
-        required_docs = evaluation.get("required_documentation", [])
-        explanation_text = explanation.get("summary", "No explanation available")
-        confidence = explanation.get("confidence", 0)
-        
-        # Build formatted response
-        emoji = {"Green": "🟢", "Amber": "🟡", "Ineligible": "🔴"}.get(classification, "ℹ️")
-        
-        response_sections = [
-            f"{emoji} **Classification**: {classification}",
-            "",
-            "**Matched Criteria:**"
-        ]
-        
-        # Add numbered matched criteria
-        for i, criterion in enumerate(matched_criteria, 1):
-            response_sections.append(f"{i}. {criterion}")
-        
-        # Add detailed explanation
-        if explanation_text:
-            response_sections.extend([
-                "",
-                "**Detailed Explanation:**",
-                explanation_text
-            ])
-        
-        # Add required documentation
-        if required_docs:
-            response_sections.extend([
-                "",
-                "**Required Documentation:**",
-                *[f"- {doc}" for doc in required_docs]
-            ])
-        
-        # Add confidence score
-        if confidence:
-            response_sections.extend([
-                "",
-                f"**Confidence Score**: {confidence*100:.0f}%"
-            ])
-        
-        return {
-            "status": "success",
-            "assistant": {"text": "\n".join(response_sections)},
-            "classification": classification,
-            "explanation": explanation_text,
-            "required_documentation": required_docs,
-            "confidence": confidence,
-            "decision": {
-                "label": classification,
-                "matched_criteria": matched_criteria
-            }
-        }
+    payload = {
+        "session_id": session_id,
+        "message": message,
+        "company_profile": org_payload,
+        "doc_ids": doc_ids or [],
+        "client_message_id": str(uuid.uuid4()),
+    }
 
-    except Exception as e:
-        logger.error(f"Error in chat_message: {str(e)}")
-        return {
-            "status": "error",
-            "assistant": {"text": f"Error processing request: {str(e)}"},
-            "classification": "Unknown",
-            "explanation": None,
-            "required_documentation": [],
-            "confidence": 0,
-            "decision": {"label": "Unknown"}
-        }
+    logger.info("POST %s/chat payload=%s", API_BASE, payload)
+
+    resp = requests.post(
+        f"{API_BASE}/chat",
+        json=payload,
+        headers={"Cache-Control": "no-cache", "Pragma": "no-cache"},
+        timeout=60,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+
+    # Backend /chat returns:
+    # {
+    # "assistant": {"text": response_text},
+    # "classification": result.classification,
+    # "explanation": result.explanation,
+    # "required_documentation": result.required_documentation,
+    # "confidence": result.confidence,
+    # "decision": {"label": result.classification},
+    # "matched_criteria": mc,
+    # }
+    assistant_text = data.get("assistant", {}).get("text", "(no response)")
+    decision = data.get("decision", {}) or {}
+    classification = decision.get("label") or data.get("classification", "Unknown")
+
+    return {
+        "status": "success",
+        "assistant": {"text": assistant_text},
+        "decision": {"label": classification, **({} if "rule_path" not in decision else {"rule_path": decision["rule_path"]})},
+        "explanation": data.get("explanation"),
+        "required_documentation": data.get("required_documentation", []),
+        "confidence": data.get("confidence"),
+        "matched_criteria": data.get("matched_criteria", []),
+        "raw": data,
+    }
 
 def answer_missing(session_id: str, answers: Dict[str, Any]) -> Dict[str, Any]:
     resp = _post_json("/chat/answer", {

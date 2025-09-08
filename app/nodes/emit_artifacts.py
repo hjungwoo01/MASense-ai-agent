@@ -1,78 +1,55 @@
 from typing import Dict, Any
-import json
 from datetime import datetime
 import logging
+import json
+import os
 
 logger = logging.getLogger(__name__)
 
+PERSIST_REPORTS = os.getenv("PERSIST_EVAL_REPORTS", "false").lower() in {"1", "true", "yes"}
+REPORT_DIR = os.getenv("EVAL_REPORT_DIR", "evaluations")
+
 def emit_artifacts(state: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Generate evaluation artifacts
+    Generate evaluation artifacts for the UI / API.
+    Optionally persists a JSON report if PERSIST_REPORTS is enabled.
     """
-    if state.get("status") == "error":
-        return state
-        
     try:
-        context = state.get("context", {})
-        evaluation = state.get("evaluation", {})
-        explanation = state.get("explanation", {})
-        
+        if state.get("status") == "error":
+            return state
+
+        context = state.get("context", {}) or {}
+        evaluation = state.get("evaluation", {}) or {}
+        explanation = state.get("explanation", {}) or {}
+
         if not evaluation:
-            return {
-                **state,
-                "status": "error",
-                "errors": ["No evaluation results to process"]
-            }
-            
-        # Create evaluation report
+            errs = list(state.get("errors", [])) + ["No evaluation results to process"]
+            return {**state, "status": "error", "errors": errs}
+
         artifacts = {
-            "timestamp": datetime.now().isoformat(),
-            "action": context.get("action", {}),
-            "organization": context.get("organization", {}),
+            "timestamp": datetime.utcnow().isoformat(),
+            "action": context.get("action", state.get("action", {})) or {},
+            "organization": context.get("organization", {}) or {},
             "evaluation": evaluation,
             "explanation": explanation,
-            "recommendations": explanation.get("recommendations", [])
+            "recommendations": explanation.get("recommendations", []),
         }
-        
-        return {
-            **state,
-            "status": "success",
-            "artifacts": artifacts
-        }
-        
+
+        if PERSIST_REPORTS:
+            try:
+                os.makedirs(REPORT_DIR, exist_ok=True)
+                fname = f"{evaluation.get('classification','Unknown')}_{datetime.utcnow().strftime('%Y%m%dT%H%M%S')}.json"
+                path = os.path.join(REPORT_DIR, fname)
+                with open(path, "w", encoding="utf-8") as f:
+                    json.dump(artifacts, f, ensure_ascii=False, indent=2)
+                artifacts["report_path"] = path
+            except Exception as io_err:
+                logger.warning("[emit_artifacts] Failed to persist report: %s", io_err)
+
+        return {**state, "status": "success", "artifacts": artifacts}
+
     except Exception as e:
-        error_msg = f"Error generating artifacts: {str(e)}"
-        logger.error(error_msg)
-        return {
-            **state,
-            "status": "error",
-            "errors": [error_msg]
-        }
+        logger.exception("[emit_artifacts] Unexpected error")
+        errs = list(state.get("errors", [])) + [f"Error generating artifacts: {e}"]
+        return {**state, "status": "error", "errors": errs}
     
-    
-    # Generate unique filename
-    filename = f"evaluations/{state['action']['sector']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    
-    try:
-        # Ensure directory exists
-        os.makedirs("evaluations", exist_ok=True)
-        
-        # Save report
-        with open(filename, "w") as f:
-            json.dump(report, f, indent=2)
-            
-        return {
-            **state,
-            "status": "complete",
-            "artifacts": {
-                "report_path": filename,
-                "report": report
-            }
-        }
-        
-    except Exception as e:
-        return {
-            **state,
-            "status": "error",
-            "errors": [f"Error saving artifacts: {str(e)}"]
-        }

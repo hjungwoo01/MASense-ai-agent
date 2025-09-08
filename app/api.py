@@ -113,47 +113,27 @@ async def get_sector_details(sector_name: str):
 
 @app.post("/evaluate", response_model=EvaluationResult)
 async def evaluate_action(action: FinancialAction):
-    """Evaluate a financial action using our workflow"""
-    logger.info(f"Received evaluation request for sector: {action.sector}, activity: {action.activity}")
-    
-    try:
-        # Convert Pydantic model to dict for workflow
-        action_dict = action.model_dump()
-        logger.debug(f"Processing action: {action_dict}")
-        
-        # Run through our evaluation workflow
-        result = evaluate_financial_action(action_dict)
-        
-        # Log retrieved clauses for debugging
-        context = result.get("context", {})
-        clauses = context.get("clauses", [])
-        if clauses:
-            logger.debug(f"Retrieved {len(clauses)} relevant clauses")
-            for i, clause in enumerate(clauses[:3]):
-                logger.debug(f"Clause {i+1}: {clause[:100]}...")
+    result = evaluate_financial_action(action.model_dump())
 
-        if result.get("status") == "error":
-            error_msg = result.get("errors", ["Unknown error occurred"])[0]
-            logger.error(f"Evaluation failed: {error_msg}")
-            raise HTTPException(status_code=500, detail=error_msg)
-            
-        # Extract evaluation results
-        evaluation = result.get("evaluation", {})
-        response = EvaluationResult(
-            status="success",
-            classification=evaluation.get("classification"),
-            explanation=evaluation.get("explanation"),
-            required_documentation=evaluation.get("required_documentation", []),
-            confidence=evaluation.get("confidence", 0.95)
-        )
-        
-        logger.info(f"Completed evaluation for {action.sector}/{action.activity} - Classification: {response.classification}")
-        return response
+    if result.get("status") == "error":
+        err = (result.get("errors") or ["Unknown error"])[0]
+        raise HTTPException(status_code=500, detail=err)
 
-    except Exception as e:
-        error_msg = f"Unexpected error during evaluation: {str(e)}"
-        logger.error(error_msg)
-        raise HTTPException(status_code=500, detail=error_msg)
+    ev = result.get("evaluation", {}) or {}
+    ex = result.get("explanation", {}) or {}
+
+    classification = ev.get("classification")
+    required_docs = ev.get("required_documentation", [])
+    explanation_text = ex.get("summary") or "No explanation generated."
+    confidence = ex.get("confidence") or 0.95
+
+    return EvaluationResult(
+        status="success",
+        classification=classification,
+        explanation=explanation_text,
+        required_documentation=required_docs,
+        confidence=confidence,
+    )
 
 @app.post("/batch-evaluate")
 async def batch_evaluate(actions: List[FinancialAction]):
@@ -347,42 +327,68 @@ async def get_session_doc(session_id: str, doc_id: str):
 @app.post("/chat")
 async def chat(payload: Dict[str, Any]):
     try:
-        message = payload.get("message", "") or ""
+        sid = payload.get("session_id")
+        message = (payload.get("message") or "").strip()
         org = payload.get("company_profile") or {}
-        
-        # Create FinancialAction from payload
-        action = FinancialAction(
-            sector=org.get("context", {}).get("sector", "Energy"),
-            activity=org.get("context", {}).get("activity", "Solar Panel Installation"),
-            description=message,
-            amount=float(org.get("context", {}).get("amount", 0) or 0),
-            currency=org.get("context", {}).get("currency", "SGD"),
-            additional_context=org
-        )
-        
-        # Use the evaluate_action endpoint
-        result = await evaluate_action(action)
-        
-        # Format response for UI
+        ctx = org.get("context", {}) if isinstance(org.get("context"), dict) else {}
+
+        selected_docs = []
+        doc_ids = payload.get("doc_ids") or []
+        if sid and sid in app.state.sessions and doc_ids:
+            by_id = {d["doc_id"]: d for d in app.state.sessions[sid]["docs"]}
+            selected_docs = [by_id[i] for i in doc_ids if i in by_id]
+
+        amount = float(ctx.get("amount") or 1.0)
+        if amount <= 0:
+            amount = 1.0
+        currency = ctx.get("currency", "SGD")
+
+        action_dict = {
+            "sector": ctx.get("sector", "Energy"),
+            "activity": ctx.get("activity", "Solar Panel Installation"),
+            "description": message,
+            "amount": amount,
+            "currency": currency,
+            "organization": org,
+            "documents": selected_docs,
+        }
+
+        logger.info("[/chat] running graph sector=%s activity=%s docs=%d",
+                    action_dict["sector"], action_dict["activity"], len(selected_docs))
+
+        result = evaluate_financial_action(action_dict)
+
+        ev = result.get("evaluation", {}) or {}
+        ex = result.get("explanation", {}) or {}
+
+        classification = ev.get("classification", "Unknown")
+        matched = ev.get("matched_criteria", [])
+        required_docs = ev.get("required_documentation", [])
+        explanation_text = ex.get("summary") or "No explanation generated."
+        confidence = ex.get("confidence") or 0.95
+
         response_text = (
-            f"**Classification**: {result.classification}\n\n"
-            f"**Explanation**: {result.explanation}\n\n"
+            f"**Classification**: {classification}\n\n"
+            f"**Explanation**: {explanation_text}\n\n"
             "**Required Documentation:**\n" +
-            ("\n".join([f"- {doc}" for doc in result.required_documentation]) or "- None")
+            ("\n".join([f"- {doc}" for doc in required_docs]) or "- None")
         )
 
         return {
             "assistant": {"text": response_text},
-            "classification": result.classification,
-            "explanation": result.explanation,
-            "required_documentation": result.required_documentation,
-            "confidence": result.confidence,
-            "decision": {"label": result.classification}
+            "classification": classification,
+            "explanation": explanation_text,
+            "required_documentation": required_docs,
+            "confidence": confidence,
+            "decision": {"label": classification},
+            "matched_criteria": matched,
+            "raw": result,
         }
 
     except Exception as e:
-        logger.error(f"Chat processing failed: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Chat processing failed")
+        raise HTTPException(status_code=500, detail=f"Chat endpoint error: {e}")
+
 
 @app.post("/chat/answer")
 async def chat_answer(payload: Dict[str, Any]):
